@@ -1,21 +1,23 @@
+<%= content_for :title, t('.title')%>
 <div class="container">
 	<div class="row">
 		<div class=" col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-			<h1>ログイン</h1>
+			<h1 class="text-center text-lg mt-3"><%= t('.title') %></h1>
       <%= form_with url: login_path, local: true do |f| %>
         <div class="form-control">
-          <%= f.label :email %>
+          <%= f.label User.human_attribute_name(:email) %>
           <%= f.email_field :email, class: 'input input-accent mb-3 mt-1' %>
         </div><div class="form-control">
-          <%= f.label :password %>
+          <%= f.label User.human_attribute_name(:password) %>
           <%= f.password_field :password, class: 'input input-accent mb-3 mt-1' %>
-        </div><div class="actions">
-          <%= f.submit 'ログイン', class: 'btn btn-secondary' %>
+        </div>
+        <div class="text-center mb-5 mt-3">
+          <%= f.submit t('defaults.login'), class: 'btn btn-secondary' %>
         </div>
       <% end %>
-      <div class='text-center'>
-        <%= link_to '登録ページへ', new_user_path %><br>
-        <%= link_to 'パスワードをお忘れの方はこちら','#' %>
+      <div class='text-center text-xs'>
+        <%= link_to t('.to_new_user_page'), new_user_path %><br>
+        <%= link_to t('.to_forget_password'),'#' %>
 			</div>
 		</div>
 	</div>
