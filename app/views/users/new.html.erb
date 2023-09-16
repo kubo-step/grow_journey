@@ -2,9 +2,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-      <h1 class="text-center">新規登録</h1>
+      <h1 class="text-center text-lg mt-3"><%= t('.title')%></h1>
       <%= form_with model: @user, local: true do |f| %>
-        <div class="form-control"><%= f.label :name %>
+        <div class="form-control">
+          <%= f.label :name %>
           <%= f.text_field :name, class: 'input input-accent mb-3 mt-1' %></div>
         <div class="form-control">
           <%= f.label :email %>
@@ -16,10 +17,12 @@
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, class: 'input input-accent mb-3 mt-1' %></div>
         <div class="text-center mt-10">
-          <%= f.submit '登録', class: 'btn btn-secondary' %>
+          <%= f.submit t('defaults.register'), class: 'btn btn-secondary mb-5' %>
         </div>
-      <% end %><div class='text-center'>
-        <%= link_to 'ログインページへ', login_path %>
-      </div></div>
+      <% end %>
+      <div class='text-center text-xs'>
+        <%= link_to t('.to_login_page'), login_path %>
+      </div>
+    </div>
   </div>
 </div>
