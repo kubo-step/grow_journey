@@ -11,13 +11,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="flex flex-col min-h-screen">
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else%>
       <%= render 'shared/before_login_header' %>
     <% end %>
-    <main class="container mx-auto mt-2 px-1 flex">
+    <main class="flex-grow">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
