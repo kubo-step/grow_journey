@@ -12,8 +12,14 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <% if logged_in? %>
+      <%= render 'shared/header' %>
+    <% else%>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+    <main class="container mx-auto mt-2 px-1 flex">
       <%= yield %>
     </main>
+    <%= render 'shared/footer' %>
   </body>
 </html>
