@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  is_goal: false
+  deadline: 2023-09-17 20:12:22
+  status: false
+  checked: false
+  achieved_at: 2023-09-17 20:12:22
+
+two:
+  content: MyString
+  is_goal: false
+  deadline: 2023-09-17 20:12:22
+  status: false
+  checked: false
+  achieved_at: 2023-09-17 20:12:22

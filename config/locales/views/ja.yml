@@ -3,6 +3,8 @@ ja:
     login: 'ログイン'
     register: '登録'
     logout: 'ログアウト'
+    message:
+      require_login: 'ログインしてください'
   users:
     new:
       title: '新規登録'
@@ -12,3 +14,6 @@ ja:
       title: 'ログイン'
       to_new_user_page: '登録ページへ'
       to_forget_password: 'パスワードをお忘れの方はこちら'
+  goals:
+    index:
+      no_result: 'やることがありません'
