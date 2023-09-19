@@ -90,4 +90,58 @@ https://www.figma.com/file/QEouHQ91wsvypoVv6PZ4rm/Untitled?type=design&node-id=0
 ### ER図
 draw.io
 https://drive.google.com/file/d/1Y8aqXJHzS9J6XB_c085kjEaBiqWMhNVS/view?usp=sharing
+<a href="https://gyazo.com/0a98e7f97eec752e26951d179260d904"><img src="https://i.gyazo.com/0a98e7f97eec752e26951d179260d904.png" alt="Image from Gyazo" width="1339"/></a>
+
+## 各テーブルの説明
+* **Usersテーブル** (ユーザー情報を格納)
+   * `id` 主キー
+   * `name` アプリ上での表示名
+   * `email` メールアドレス
+   * `avatar` アプリ上のユーザーアイコン
+   * `crypted_password` Sorcery(Gem)によってハッシュ化されるパスワード
+   * `salt` Sorcery(Gem)によってパスワードハッシュの計算に使用されるランダムな文字列
+   * `reset_password_token`　パスワードリセットのためのトークン
+   * `reset_password_token_expires_at` パスワードリセットトークンの有効期限
+   * `reset_password_email_sent_at` パスワードリセットメール送信時刻
+   * `access_count_to_reset_password_page`  パスワードリセットページへのアクセス回数
+ 
+ * **Line_accountsテーブル** (連携するLINEアカウントを格納)
+   * `id` 主キー
+   * `user_id` 外部キー、Usersテーブルとhas_oneアソシエーション
+   * `line_user_id` LINE連携により取得できるLINE上でのID
+   * `line_name` LINE連携により取得できるLINE上での表示名
+   * `picture_url` LINE連携により取得できるLINE上で設定されたプロフィール画像のURL
+ 
+ * **Goalsテーブル** (目標情報を格納)
+   * `id` 主キー
+   * `user_id` 外部キー、Usersテーブルとhas_manyアソシエーション
+   * `content` やることの内容
+   * `is_goal` 目標とタスクの判定
+   * `deadline` 達成予定日
+   * `status` 目標の公開設定(公開、非公開)
+   * `checked` 目標が達成された時に、完了フラグを立てる
+   * `achieved_at` 目標が達成された日時を記録する
+ 
+ * **Category_tagsテーブル** (タグの中間テーブル)
+   * `category_id` 外部キー、Categoriesテーブルとhas_manyアソシエーション
+   * `goal_id` 外部キー、Goalsテーブルとhas_manyアソシエーション
+ 
+ * **Categoriesテーブル** (カテゴリタグを格納)
+   * `id` 主キー
+   * `name` タグ名
+     * 例："勉強" "健康" "仕事" "趣味"など
+ 
+ * **Rewardsテーブル** (ご褒美情報を格納) 
+   * `id` 主キー
+   * `user_id` 外部キー、Usersテーブルとhas_manyアソシエーション
+   * `reward_content` ご褒美の内容
+   * `point` ご褒美の合計ポイント
+
+ * **Cheersテーブル** (どのユーザーがどの目標・タスクに応援をしたかを格納)
+ 　　　　　　　(いいね機能と同等のもの )
+   * `id` 主キー
+   * `user_id` 外部キー、Usersテーブルとhas_manyアソシエーション
+   * `goal_id` 外部キー、Goalsテーブルとhas_manyアソシエーション
+
+
 
