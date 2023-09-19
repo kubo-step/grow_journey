@@ -1,12 +1,23 @@
-<div class="container m-9">
+<div class="hero min-h-screen">
   <div class="row">
     <div class="col-12">
-      <div class="row">
-        <% if @goals.present? %>
-          <%= render @goals %>
-        <% else %>
-          <p><%= t('.no_result') %></p>
-        <% end %>
+      <div class="text-center text-2xl">あなたの現在の本数は〇〇本です</div>
+        <div style="display: flex;">
+          <p>目標</p><br>
+          <% if @goals.present? %>
+            <%= render @goals %>
+          <% else %>
+            <p><%= t('.no_result') %></p>
+            <%= link_to '登録する', new_goal_path, class:'btn btn-secondary'%>
+          <% end %>
+          タスク
+          <% if @goals.present? %>
+            <%= render @goals %>
+          <% else %>
+            <p><%= t('.no_result') %></p>
+            <%= link_to '登録する', new_goal_path, class:'btn btn-secondary'%>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

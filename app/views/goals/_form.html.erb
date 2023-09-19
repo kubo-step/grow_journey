@@ -1,0 +1,11 @@
+<div class="row mb-3">
+  <div class="col-lg-8 offset-lg-2">
+    <%= form_with model: goal, local: true do |f| %>
+      <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, class: 'form-control mb-3'%>
+      </div>
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

@@ -16,4 +16,4 @@ ja:
       to_forget_password: 'パスワードをお忘れの方はこちら'
   goals:
     index:
-      no_result: 'やることがありません'
+      no_result: '0件'
