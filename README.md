@@ -137,8 +137,7 @@ https://drive.google.com/file/d/1Y8aqXJHzS9J6XB_c085kjEaBiqWMhNVS/view?usp=shari
    * `reward_content` ご褒美の内容
    * `point` ご褒美の合計ポイント
 
- * **Cheersテーブル** (どのユーザーがどの目標・タスクに応援をしたかを格納)
- 　　　　　　　(いいね機能と同等のもの )
+ * **Cheersテーブル** (どのユーザーがどの目標・タスクに応援をしたかを格納)(いいね機能と同等のもの )
    * `id` 主キー
    * `user_id` 外部キー、Usersテーブルとhas_manyアソシエーション
    * `goal_id` 外部キー、Goalsテーブルとhas_manyアソシエーション
