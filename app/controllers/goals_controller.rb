@@ -1,6 +1,6 @@
 class GoalsController < ApplicationController
   def index
-    @goals = Goal.all.includes(:user).order(created_at: :desc)
+    @goals = current_user.goals.includes(:category).order(created_at: :desc)
   end
 
   def new
@@ -9,12 +9,16 @@ class GoalsController < ApplicationController
 
   def create
     @goal = current_user.goals.build(goal_params)
-    @goal.save
+    if @goal.save
+      redirect_to goals_path
+    else
+      render :new
+    end
   end
 
   private
 
   def goal_params
-    params.require(:goal).permit(:content, :is_goal, :category_id, :deadline, :status, :checked, :achieved_at)
+    params.require(:goal).permit(:content, :is_goal, :category_id, :deadline, :status, :checked, :achieved_at, :user_id)
   end
 end
