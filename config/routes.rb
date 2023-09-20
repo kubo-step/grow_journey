@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[new create]
   resources :goals, only: %i[index new create]
+  resources :categories, only: %i[new create]
 end
