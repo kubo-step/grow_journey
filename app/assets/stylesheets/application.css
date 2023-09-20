@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+div.example input[type=radio] {
+  display: none; /* ラジオボタンを非表示にする */
+  }
+input[type="radio"]:checked + label {
+  background: #31A9EE;/* マウス選択時の背景色を指定する */
+  color: #ffffff; /* マウス選択時のフォント色を指定する */
+}
+.label {
+  margin: 5px; /* ラベル外側の余白を指定する */
+  border: 1px solid #006DD9;/* ラベルの境界線を実線で指定する */
+  display: flex;
+  }
+.label_name {
+  margin: 5px; /* ラベル外側の余白を指定する */
+  border: 1px solid #000000;/* ラベルの境界線を実線で指定する */
+  display: flex;
+  }
