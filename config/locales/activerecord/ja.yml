@@ -9,4 +9,4 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
       goal:
-        content: 'やること'
+        content: '目標'

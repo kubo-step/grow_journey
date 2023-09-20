@@ -1,0 +1,14 @@
+<div class="row mb-3">
+  <div class="col-lg-8 offset-lg-2">
+    <%= form_with model: goal, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_field :content, class: 'form-control mb-3'%>
+      </div>
+      <div>
+        <%= f.collection_radio_buttons :category_id, Category.order(:id), :id, :name %>
+      </div>
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
