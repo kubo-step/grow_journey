@@ -8,8 +8,8 @@
             <%= goal.content %>
           </a>
           <%= l goal.deadline, format: :short %>
-          <%= link_to '編集', '#' %>
-          <%= link_to '削除', '#' %>
+          <%= link_to '編集', edit_goal_path(goal) %>
+          <%= button_to '削除', goal_path(goal), method: :delete %>
       </div>
     </div>
     </div>
