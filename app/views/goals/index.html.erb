@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-12">
       <div class="text-center text-2xl">あなたの現在の本数は〇〇本です</div>
-        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl mx-auto mt-12 mb-12">
+        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl mx-auto mt-20 mb-20">
           <div class="card-body">
             <p>目標</p><br>
             <% if @goals.present? %>
-              <%= render @goals %>
+                <%= render @goals.select(&:is_goal?) %>
             <% else %>
               <p><%= t('.no_result') %></p>
             <% end %>
@@ -17,7 +17,7 @@
           <div class="card-body">
             タスク
             <% if @goals.present? %>
-              <%= render @goals %>
+              <%= render @goals.select(&:is_task?) %>
             <% else %>
               <p><%= t('.no_result') %></p>
             <% end %>
