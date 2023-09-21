@@ -1,14 +1,17 @@
 <div class="col-sm-12 col-lg-4 mb-3">
   <div id="goal-id-<%= goal.id %>">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">
+    <div class ="card">
+    <div class="flex">
+        <div class="flex-none">
+          <%= goal.category.name %>
           <a href="#">
             <%= goal.content %>
           </a>
-          <%= goal.category.name %>
-        </h4>
+          <%= l goal.deadline, format: :short %>
+          <%= link_to '編集', '#' %>
+          <%= link_to '削除', '#' %>
       </div>
+    </div>
     </div>
   </div>
 </div>

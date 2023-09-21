@@ -9,6 +9,7 @@ class GoalsController < ApplicationController
 
   def create
     @goal = current_user.goals.build(goal_params)
+    @goal.is_goal = true
     if @goal.save
       redirect_to goals_path
     else
