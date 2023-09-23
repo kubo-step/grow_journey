@@ -17,3 +17,5 @@ ja:
   goals:
     index:
       no_result: '0件'
+    new:
+      content: '目標'

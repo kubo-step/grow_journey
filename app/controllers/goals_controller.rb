@@ -1,6 +1,8 @@
 class GoalsController < ApplicationController
+  before_action :find_goal, only: [:edit, :update, :destroy]
+
   def index
-    @goals = Goal.all.includes(:user).order(created_at: :desc)
+    @goals = current_user.goals.includes(:category).order(created_at: :desc)
   end
 
   def new
@@ -9,12 +11,36 @@ class GoalsController < ApplicationController
 
   def create
     @goal = current_user.goals.build(goal_params)
-    @goal.save
+    @goal.is_goal = true
+    if @goal.save
+      redirect_to goals_path
+    else
+      render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @goal.update(goal_params)
+      redirect_to goals_path, success: t('defaults.message.updated', item: Goal.model_name.human)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @goal.destroy!
+    redirect_to goals_path, success: t('defaults.message.deleted', item: Goal.model_name.human)
   end
 
   private
 
   def goal_params
-    params.require(:goal).permit(:content, :is_goal, :category_id, :deadline, :status, :checked, :achieved_at)
+    params.require(:goal).permit(:content, :is_goal, :category_id, :deadline, :status, :checked, :achieved_at, :user_id)
+  end
+
+  def find_goal
+    @goal = current_user.goals.find(params[:id])
   end
 end
