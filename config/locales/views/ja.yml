@@ -17,8 +17,12 @@ ja:
   goals:
     index:
       no_result: '0件'
+      title: '一覧'
     new:
       content: '目標'
+      title: '目標作成'
+    edit:
+      title: '目標編集'
   profiles:
     show:
       title: 'プロフィール'
