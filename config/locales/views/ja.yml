@@ -19,3 +19,8 @@ ja:
       no_result: '0件'
     new:
       content: '目標'
+  profiles:
+    show:
+      title: 'プロフィール'
+    edit:
+      title: 'プロフィール編集'
