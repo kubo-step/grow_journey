@@ -10,8 +10,6 @@ module.exports = {
           "base-100": "#ffffff",
         },
       },
-      "dark",
-      "lemonade",
     ],
   },
   content: [
