@@ -1,11 +1,11 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: %i[edit update]
+  before_action :set_user, only: %i[edit update show]
 
   def edit;end
 
   def update
     if @user.update(user_params)
-      redirect_to profile_path, success: t('defaults.message.updated', item: User.model_name.human)
+      redirect_to profiles_path, success: t('defaults.message.updated', item: User.model_name.human)
     else
       flash.now['danger'] = t('defaults.message.not_updated', item: User.model_name.human)
       render :edit
@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def show; end
-  
+
   private
 
   def set_user

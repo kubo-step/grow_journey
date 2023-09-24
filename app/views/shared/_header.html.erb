@@ -9,10 +9,10 @@
         <a class="btn btn-ghost rounded-btn">応援する</a>
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost rounded-btn">
-          <%= image_tag 'user_avatar_sample.png', size:'50x50', style:"border-radius: 50%;"%>
+          <%= image_tag current_user.avatar.url, size:'50x50', style:"border-radius: 50%;"%>
         </label>
           <ul tabindex="0" class="text-gray-700 menu dropdown-content z-[1] p-2 shadow bg-base-100 bg- rounded-box w-52 mt-4">
-            <li><a>マイページ</a></li>
+            <li><%= link_to t('profiles.show.title'), profiles_path, class: 'dropdown-item' %></li>
             <li><%= button_to t('defaults.logout'), logout_path, method: :delete %></li>
           </ul>
         </label>
