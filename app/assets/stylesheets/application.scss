@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+@import "font-awesome";
+
 div.example input[type=radio] {
   display: none; /* ラジオボタンを非表示にする */
   }
@@ -23,10 +26,10 @@ input[type="radio"]:checked + label {
 .label {
   margin: 5px; /* ラベル外側の余白を指定する */
   border: 1px solid #006DD9;/* ラベルの境界線を実線で指定する */
-  display: flex;
+  display: inline;
   }
 .label_name {
   margin: 5px; /* ラベル外側の余白を指定する */
   border: 1px solid #000000;/* ラベルの境界線を実線で指定する */
-  display: flex;
+  display: inline;
   }

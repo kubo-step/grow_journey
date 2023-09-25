@@ -1,15 +1,19 @@
-<div class="col-sm-12 col-lg-4 mb-3">
+<div class="sm:col-span-12 lg:col-span-4 mb-3">
   <div id="goal-id-<%= goal.id %>">
       <div class="flex">
-          <div class="flex-none">
             <%= goal.category.name %>
-            <a href="#">
-              <%= goal.content %>
-            </a>
-            <%= l goal.deadline, format: :short %>
-            <%= link_to '編集', edit_goal_path(goal) %>
-            <%= button_to '削除', goal_path(goal), method: :delete %>
-        </div>
-      </div>
+            <%= goal.content %>
+            </div>
+            <div class="flex float-right">
+              <%= link_to edit_goal_path(goal) , class:"mx-1" do %>
+                <%= icon 'fa', 'pen' %>
+              <% end %>
+              <%= button_to goal_path(goal), method: :delete do%>
+                <%= icon 'fas', 'trash' %>
+              <% end %>
+            </div>
+            <div class="flex float-right">
+              <%= l goal.deadline, format: :short %>
+            </div>
   </div>
 </div>
