@@ -1,19 +1,23 @@
 <div class="sm:col-span-12 lg:col-span-4 mb-3">
   <div id="goal-id-<%= goal.id %>">
       <div class="flex">
-            <%= goal.category.name %>
+          <div class="flex-basis-10">
             <%= goal.content %>
-            </div>
-            <div class="flex float-right">
-              <%= link_to edit_goal_path(goal) , class:"mx-1" do %>
-                <%= icon 'fa', 'pen' %>
-              <% end %>
-              <%= button_to goal_path(goal), method: :delete do%>
-                <%= icon 'fas', 'trash' %>
-              <% end %>
-            </div>
-            <div class="flex float-right">
-              <%= l goal.deadline, format: :short %>
-            </div>
+          </div><br>
+      </div>
+          <div class="flex float-left border border-accent rounded text-xs">
+            <%= goal.category.name %>
+          </div>
+          <div class="flex float-right text-sm">
+            <%= link_to edit_goal_path(goal) , class:"mx-1" do %>
+              <%= icon 'fa', 'pen' %>
+            <% end %>
+            <%= button_to goal_path(goal), method: :delete do%>
+              <%= icon 'fas', 'trash' %>
+            <% end %>
+          </div>
+          <div class="flex float-right">
+            <%= l goal.deadline, format: :short %>
+          </div>
   </div>
 </div>
