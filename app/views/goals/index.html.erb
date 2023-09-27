@@ -6,13 +6,15 @@
     <div class="flex space-x-4">
       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl mx-auto m-8">
         <div class="card-body">
-          <div class="font-bold text-center text-xl">目標</div>
-          <% if @goals.present? %>
-              <%= render @goals.select(&:is_goal?) %>
-          <% else %>
-            <p><%= t('.no_result') %></p>
+          <%= turbo_frame_tag "cats-list" do %>
+            <div class="font-bold text-center text-xl">目標</div>
+            <% if @goals.present? %>
+                <%= render @goals.select(&:is_goal?) %>
+            <% else %>
+              <p><%= t('.no_result') %></p>
+            <% end %>
+            <%= link_to '登録する', new_goal_path, class:'btn btn-secondary'%>
           <% end %>
-          <%= link_to '登録する', new_goal_path, class:'btn btn-secondary'%>
         </div>
       </div>
       <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl mx-auto m-8">
