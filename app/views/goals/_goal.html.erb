@@ -1,19 +1,19 @@
 <%= turbo_frame_tag goal do %>
-  <div class="sm:col-span-12 lg:col-span-4 mb-3">
+  <div class="card max-w-lg mb-3">
     <div id="goal-id-<%= goal.id %>">
         <div class="flex">
             <div class="flex-basis-10">
               <%= goal.content %>
             </div><br>
         </div>
-            <div class="flex float-left border border-accent rounded text-xs">
+            <div class="flex float-left bg-primary bg-opacity-50 rounded text-xs">
               <%= goal.category.name %>
             </div>
             <div class="flex float-right fa-sm taxt-sm">
               <%= link_to edit_goal_path(goal) , class:"mx-1" do %>
                 <%= icon 'fa', 'pen' %>
               <% end %>
-              <%= button_to goal_path(goal), method: :delete do%>
+              <%= button_to goal_path(goal), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do%>
                 <%= icon 'fas', 'trash' %>
               <% end %>
             </div>
