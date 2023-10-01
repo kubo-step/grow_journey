@@ -1,31 +1,37 @@
 <% content_for(:title, t('.title')) %>
-<div class="hero min-h-screen">
-  <div class="row">
-    <div class="text-center text-2xl">あなたの現在の本数は〇〇本です</div>
-    <%= render 'form', goal: @goal%>
-    <div class="flex space-x-4">
-      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl mx-auto m-8">
+  <div class="container mx-auto py-12 text-center">
+    <div class="mb-20">
+      <div class="text-2xl">あなたの現在の本数は〇〇本です</div>
+    </div>
+  </div>
+    <div class="flex flex-wrap justify-center">
+      <div class="card w-full max-w-lg mx-4 mb-8 shadow-2xl">
         <div class="card-body">
-          <div class="font-bold text-center text-xl">目標</div>
-          <% if @goals.present? %>
-              <%= render @goals.select(&:is_goal?) %>
-          <% else %>
-            <p><%= t('.no_result') %></p>
-          <% end %>
-          <%= link_to '登録する', new_goal_path, class:'btn btn-secondary'%>
+            <div class="font-bold text-center text-xl">目標</div>
+            <% if @goals.present? %>
+              <%= turbo_frame_tag Goal.new %>
+              <div id="goals">
+                <%= render @goals.select(&:is_goal?) %>
+              </div>
+            <% else %>
+              <p><%= t('.no_result') %></p>
+            <% end %>
+            <%= link_to '登録する', new_goal_path, class: 'btn btn-secondary', data: { turbo_frame: dom_id(Goal.new) } %>
         </div>
       </div>
-      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl mx-auto m-8">
+      <div class="card w-full max-w-lg mx-4 mb-8 shadow-2xl">
         <div class="card-body">
           <div class="font-bold text-center text-xl">タスク</div>
           <% if @goals.present? %>
-            <%= render @goals.select(&:is_task?) %>
+            <%= turbo_frame_tag Goal.new %>
+            <div id="goals">
+              <%= render @goals.select(&:is_task?) %>
+            </div>
           <% else %>
             <p><%= t('.no_result') %></p>
           <% end %>
-          <%= link_to '登録する', new_goal_path, class:'btn btn-secondary'%>
+          <%= link_to '登録する', new_goal_path, class: 'btn btn-secondary' %>
         </div>
       </div>
     </div>
   </div>
-</div>

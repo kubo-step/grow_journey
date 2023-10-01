@@ -1,19 +1,28 @@
-<div class="sm:col-span-12 lg:col-span-4 mb-3">
-  <div id="goal-id-<%= goal.id %>">
+<%= turbo_frame_tag goal do %>
+  <div class="card max-w-lg mb-3">
+    <div id="goal-id-<%= goal.id %>">
       <div class="flex">
-            <%= goal.category.name %>
+        <div class="flex-basis-10">
+          <%= form_with model: goal, url: toggle_goal_path(goal) do |f| %>
+            <%= f.check_box :checked, onchange: 'this.form.requestSubmit()' %>
             <%= goal.content %>
-            </div>
-            <div class="flex float-right">
-              <%= link_to edit_goal_path(goal) , class:"mx-1" do %>
-                <%= icon 'fa', 'pen' %>
-              <% end %>
-              <%= button_to goal_path(goal), method: :delete do%>
-                <%= icon 'fas', 'trash' %>
-              <% end %>
-            </div>
-            <div class="flex float-right">
-              <%= l goal.deadline, format: :short %>
-            </div>
+          <% end %>
+        </div><br>
+      </div>
+      <div class="flex float-left bg-primary bg-opacity-50 rounded text-xs">
+        <%= goal.category.name %>
+      </div>
+      <div class="flex float-right fa-sm taxt-sm">
+        <%= link_to edit_goal_path(goal) , class:"mx-1" do %>
+          <%= icon 'fa', 'pen' %>
+        <% end %>
+        <%= button_to goal, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
+          <%= icon 'fas', 'trash' %>
+        <% end %>
+      </div>
+      <div class="flex float-right">
+        <%= l goal.deadline, format: :short %>
+      </div>
+    </div>
   </div>
-</div>
+<% end %>

@@ -1,0 +1,13 @@
+<% if notice %>
+"更新に成功しました"
+<% end %>
+
+<% if alert %>
+  <div class="mb-2 toast hide border-danger" data-controller="toast">
+    <div class="toast-header text-danger">
+      <strong class="me-auto"><%= "エラー" %></strong>
+      <button class="btn-close" data-bs-dismiss="toast">
+    </div>
+    <div class="toast-body"><%= alert %></div>
+  </div>
+<% end %>
