@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  before_action :find_goal, only: %i[show edit update destroy]
+  before_action :find_goal, only: %i[show edit update destroy toggle]
 
   def index
     @goals = current_user.goals.includes(:category).order(created_at: :desc)
@@ -31,14 +31,23 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    @goal.destroy!
+    @goal.destroy
     flash.now.notice = "削除しました"
+  end
+
+  def toggle
+    @goal.update(checked: !@goal.checked)
+    render turbo_stream: turbo_stream.replace(
+      @goal,
+      partial: 'goal',
+      locals: { goal: @goal }
+    )
   end
 
   private
 
   def goal_params
-    params.require(:goal).permit(:content, :is_goal,:name, :category_id, :deadline, :status, :checked, :achieved_at, :user_id)
+    params.require(:goal).permit(:content, :is_goal, :category_id, :deadline, :status, :checked, :achieved_at, :user_id)
   end
 
   def find_goal
