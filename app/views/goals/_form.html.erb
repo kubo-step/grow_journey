@@ -10,13 +10,13 @@
         <%= f.radio_button :is_goal, checked: false %>
       </div><br>
     </div>
-      <div class="flex float-left bg-200 rounded text-xs">
+      <div class="flex float-left border border-bg-200 rounded">
         <%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: "カテゴリー")%>
       </div>
       <div class="flex float-right text-sm">
         <%= f.date_field :deadline %>
         <%= f.submit class: 'btn btn-secondary' %>
-        <%= link_to "キャンセル", goal, class: "btn btn-sm btn-outline-secondary" %>
+        <%= link_to "キャンセル", goal, class: "btn btn-outline-secondary" %>
       </div>
   <% end %>
   </div>

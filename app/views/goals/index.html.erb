@@ -11,10 +11,8 @@
             <% if @goals.present? %>
               <%= turbo_frame_tag Goal.new %>
               <div id="goals">
-                <%= render @goals.select(&:is_goal?) %>
+                <%= render @goals.select{ |g| g.is_goal? && !g.checked? } %>
               </div>
-            <% else %>
-              <p><%= t('.no_result') %></p>
             <% end %>
             <%= link_to '登録する', new_goal_path, class: 'btn btn-secondary', data: { turbo_frame: dom_id(Goal.new) } %>
         </div>
