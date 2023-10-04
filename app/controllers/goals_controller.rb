@@ -44,6 +44,10 @@ class GoalsController < ApplicationController
     )
   end
 
+  def completed_goals
+    @goals = current_user.goals.includes(:category).order(created_at: :desc)
+  end
+
   private
 
   def goal_params

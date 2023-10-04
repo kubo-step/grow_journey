@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     member do
       patch :toggle
     end
+    collection do
+      get  :completed_goals
+    end
   end
   resources :categories, only: %i[new create]
   resource :profiles, only: %i[show edit update]
