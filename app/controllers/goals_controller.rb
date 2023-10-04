@@ -24,7 +24,7 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
-      flash.now.notice = "ねこを更新しました。"
+      flash.now.notice = "更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
