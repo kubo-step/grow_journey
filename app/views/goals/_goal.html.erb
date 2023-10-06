@@ -1,27 +1,27 @@
 <%= turbo_frame_tag goal do %>
-  <div class="card max-w-lg mb-3">
+  <div class="card max-w-lg mb-3 p-4 rounded-lg border border-gray-300">
     <div id="goal-id-<%= goal.id %>">
-      <div class="flex">
-        <div class="flex-basis-10">
+      <div class="flex items-center justify-between">
+        <div class="flex-shrink-0">
           <%= form_with model: goal, url: toggle_goal_path(goal) do |f| %>
-            <%= f.check_box :checked, onchange: 'this.form.requestSubmit()' %>
-            <%= goal.content %>
+            <div class="flex items-center space-x-2">
+              <%= f.check_box :checked, onchange: 'this.form.requestSubmit()', class: 'text-primary' %>
+            </div>
           <% end %>
-        </div><br>
-      </div>
-      <div class="flex float-left bg-primary bg-opacity-50 rounded text-xs">
-        <%= goal.category.name %>
-      </div>
-      <div class="flex float-right fa-sm taxt-sm">
-        <%= link_to edit_goal_path(goal) , class:"mx-1" do %>
-          <%= icon 'fa', 'pen' %>
-        <% end %>
-        <%= button_to goal, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
-          <%= icon 'fas', 'trash' %>
-        <% end %>
-      </div>
-      <div class="flex float-right">
-        <%= l goal.deadline, format: :short %>
+        </div>
+        <div class="flex-grow ml-4">
+          <p class="text-lg font-semibold"><%= goal.content %></p>
+          <p class="text-xs text-gray-500"><%= l goal.deadline, format: :short %></p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <div class="bg-primary bg-opacity-50 text-xs rounded-full px-2 py-1 text-white"><%= goal.category.name %></div>
+          <%= link_to edit_goal_path(goal), class: "text-primary hover:underline" do %>
+            <%= icon 'fa', 'pen' %>
+          <% end %>
+          <%= button_to goal, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } }, class: "text-primary hover:underline" do %>
+            <%= icon 'fas', 'trash' %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

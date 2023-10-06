@@ -4,24 +4,24 @@
     <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
       <h1 class="text-center text-lg mt-3"><%= t('.title')%></h1>
       <%= form_with model: @user, local: true do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
+      <%= render 'shared/error_messages', object: f.object %>
         <div class="form-control">
           <%= f.label :name %>
-          <%= f.text_field :name, class: 'input input-accent mb-3 mt-1' %></div>
+          <%= f.text_field :name, class: 'input input-accent w-full mb-3 mt-1' %></div>
         <div class="form-control">
           <%= f.label :email %>
-          <%= f.email_field :email, class: 'input input-accent mb-3 mt-1' %></div>
+          <%= f.email_field :email, class: 'input input-accent w-full mb-3 mt-1' %></div>
         <div class="form-control">
           <%= f.label :password %>
-          <%= f.password_field :password, class: 'input input-accent mb-3 mt-1' %></div>
+          <%= f.password_field :password, class: 'input input-accent w-full mb-3 mt-1' %></div>
         <div class="form-control">
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, class: 'input input-accent mb-3 mt-1' %></div>
+          <%= f.password_field :password_confirmation, class: 'input input-accent w-full mb-3 mt-1' %></div>
         <div class="text-center mt-10">
-          <%= f.submit t('defaults.register'), class: 'btn btn-secondary mb-5' %>
+          <%= f.submit t('defaults.register'), class: 'btn btn-secondary w-full mb-5' %>
         </div>
       <% end %>
-      <div class='text-center text-xs'>
+      <div class='text-center text-xs mb-10'>
         <%= link_to t('.to_login_page'), login_path %>
       </div>
     </div>
