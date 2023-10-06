@@ -9,11 +9,19 @@ ja:
     new:
       title: '新規登録'
       to_login_page: 'ログインページへ'
+    create:
+      success: 'ユーザー登録が完了しました'
+      fail: 'ユーザー登録に失敗しました'
   user_sessions:
     new:
       title: 'ログイン'
       to_new_user_page: '登録ページへ'
       to_forget_password: 'パスワードをお忘れの方はこちら'
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+    destroy:
+      success: 'ログアウトしました'
   goals:
     index:
       no_result: '0件'
@@ -21,6 +29,9 @@ ja:
     new:
       content: '目標'
       title: '目標作成'
+    create:
+      success: '登録しました'
+      fail: '登録に失敗しました'
     edit:
       title: '目標編集'
   profiles:

@@ -1,6 +1,6 @@
-<%= turbo_frame_tag goal do %>
+
   <div class="card max-w-lg mx-auto mb-3">
-    <%= form_with model: goal, local: true do |f| %>
+    <%= form_with model: goal do |f| %>
       <div class="p-4">
         <div class="mb-4">
           <label for="goal_content" class="font-semibold">目標またはタスク</label>
@@ -12,11 +12,11 @@
           <div class="flex justify-center">
             <div class="example">
               <label for="goal_type" class="mr-2">
-                <%= f.radio_button :is_goal, true, id: "goal_type" %>
+                <%= f.radio_button :is_goal, true, id: "goal_type", checked: true %>
                 目標
               </label>
               <label for="task_type">
-                <%= f.radio_button :is_goal, false, id: "task_type" %>
+                <%= f.radio_button :is_goal, false, id: "task_type", checked: true%>
                 タスク
               </label>
             </div>
@@ -36,10 +36,9 @@
         </div>
 
         <div class="text-center">
-          <%= link_to "キャンセル", goal, class: "btn btn-outline-secondary px-3" %>
+          <%= link_to "キャンセル", goals_path, class: "btn btn-outline-secondary px-3" %>
           <%= f.submit "登録", class: 'btn btn-secondary py-2 px-8 ml-2' %>
         </div>
       </div>
     <% end %>
   </div>
-<% end %>

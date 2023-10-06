@@ -9,7 +9,6 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <script src="<your-kit-code>" data-mutate-approach="sync"></script>
   </head>
 
   <body class="flex flex-col min-h-screen">
@@ -23,6 +22,7 @@
         <%= render "shared/flash" %>
       </div>
       <%= yield %>
+      <%= turbo_frame_tag "modal" %>
     </main>
     <%= render 'shared/footer' %>
   </body>

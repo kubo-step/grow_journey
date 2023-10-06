@@ -9,9 +9,9 @@
       <div class="mb-4">
         <label class="block text-sm font-medium text-gray-700">種別</label>
         <div class="flex items-center space-x-2">
-          <%= f.radio_button :is_goal, value: true %>
+          <%= f.radio_button :is_goal, true, checked: true %>
           <%= f.label "目標", class: 'text-sm' %>
-          <%= f.radio_button :is_goal, "タスク", value: false %>
+          <%= f.radio_button :is_goal, false, checked: true %>
           <%= f.label "タスク", class: 'text-sm' %>
         </div>
       </div>
