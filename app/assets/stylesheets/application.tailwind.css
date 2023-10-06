@@ -2,12 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+#goal_deadline::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 100%;
+  opacity: 0;/* 不透明度を0に設定して非表示にする */
 }
-
-*/

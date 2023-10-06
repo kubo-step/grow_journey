@@ -14,7 +14,7 @@ class GoalsController < ApplicationController
   def create
     @goal = current_user.goals.build(goal_params)
     if @goal.save
-      flash.now.notice = "登録しました"
+      redirect_to goals_path, success: t('.success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
-      flash.now.notice = "ねこを更新しました。"
+      flash.now[:success] = "更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class GoalsController < ApplicationController
 
   def destroy
     @goal.destroy
-    flash.now.notice = "削除しました"
+    flash.now[:success] = "削除しました"
   end
 
   def toggle

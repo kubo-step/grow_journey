@@ -1,13 +1,19 @@
-<% if notice %>
-"更新に成功しました"
-<% end %>
-
-<% if alert %>
-  <div class="mb-2 toast hide border-danger" data-controller="toast">
-    <div class="toast-header text-danger">
-      <strong class="me-auto"><%= "エラー" %></strong>
-      <button class="btn-close" data-bs-dismiss="toast">
+<% flash.each do |error_type, message| %>
+  <% if error_type == "success" %>
+    <div class="alert alert-success">
+      <span><%= message %></span>
     </div>
-    <div class="toast-body"><%= alert %></div>
-  </div>
+  <% elsif error_type == "error" %>
+    <div class="alert alert-error">
+      <span><%= message %></span>
+    </div>
+  <% elsif error_type == "warning" %>
+    <div class="alert alert-warning">
+      <span><%= message %></span>
+    </div>
+  <% elsif error_type == "info"%>
+    <div class="p-4 text-sm text-blue-800 rounded-lg bg-blue-50 " role="alert">
+      <span class="font-medium"><%= message %></span>
+    </div>
+  <% end %>
 <% end %>
