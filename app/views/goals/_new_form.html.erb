@@ -1,6 +1,7 @@
-
+<%= turbo_frame_tag goal do %>
   <div class="card max-w-lg mx-auto mb-3">
     <%= form_with model: goal do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
       <div class="p-4">
         <div class="mb-4">
           <label for="goal_content" class="font-semibold">目標またはタスク</label>
@@ -16,7 +17,7 @@
                 目標
               </label>
               <label for="task_type">
-                <%= f.radio_button :is_goal, false, id: "task_type", checked: true%>
+                <%= f.radio_button :is_goal, false, id: "task_type", checked: true %>
                 タスク
               </label>
             </div>
@@ -24,21 +25,20 @@
         </div>
 
         <div class="mb-4">
-          <label for="goal_category" class=" font-semibold">カテゴリー</label>
+          <label for="goal_category" class="font-semibold">カテゴリー</label>
           <%= f.collection_select(:category_id, Category.all, :id, :name, { include_blank: "カテゴリーを選択してください" }, { id: "goal_category", class: 'w-full border rounded py-2 px-3' }) %>
         </div>
 
         <div class="mb-4">
-          <label for="goal_deadline" class=" font-semibold">達成予定日</label>
-            <%= f.datetime_field :deadline, id: "goal_deadline", class: 'w-full border rounded py-2 px-3' %>
-            </div>
-          </div>
+          <label for="goal_deadline" class="font-semibold">達成予定日</label>
+          <%= f.datetime_field :deadline, id: "goal_deadline", class: 'w-full border rounded py-2 px-3' %>
         </div>
+      </div>
 
-        <div class="text-center">
-          <%= link_to "キャンセル", goals_path, class: "btn btn-outline-secondary px-3" %>
-          <%= f.submit "登録", class: 'btn btn-secondary py-2 px-8 ml-2' %>
-        </div>
+      <div class="text-center">
+        <%= link_to "キャンセル", goals_path, class: "btn btn-outline-secondary px-3" %>
+        <%= f.submit "登録", class: 'btn btn-secondary py-2 px-8 ml-2' %>
       </div>
     <% end %>
   </div>
+<% end %>
