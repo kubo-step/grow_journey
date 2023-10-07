@@ -14,7 +14,7 @@ class GoalsController < ApplicationController
   def create
     @goal = current_user.goals.build(goal_params)
     if @goal.save
-      redirect_to goals_path, success: t('.success')
+      flash.now[:success] = t('.success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,11 +37,11 @@ class GoalsController < ApplicationController
 
   def toggle
     @goal.update(checked: !@goal.checked)
-    render turbo_stream: turbo_stream.replace(
-      @goal,
-      partial: 'goal',
-      locals: { goal: @goal }
-    )
+    if @goal.checked
+      render turbo_stream: turbo_stream.remove(@goal)
+    else
+      render turbo_stream: turbo_stream.update(@goal, partial: 'goal')
+    end
   end
 
   def completed_goals
