@@ -3,11 +3,11 @@
     <div id="goal-id-<%= goal.id %>">
       <div class="flex items-center justify-between">
         <div class="flex-shrink-0">
-          <%= form_with model: goal, url: toggle_goal_path(goal) do |f| %>
-            <div class="flex items-center space-x-2">
-              <%= f.check_box :checked, onchange: 'this.form.requestSubmit()', class: 'text-primary' %>
-            </div>
-          <% end %>
+        <%= form_with model: goal, url: toggle_goal_path(goal, format: :json), data: { goal_id: goal.id } do |f| %>
+          <div class="flex items-center space-x-2">
+            <%= f.check_box :checked, class: 'text-primary', id: "toggle-button-#{goal.id}" %>
+          </div>
+        <% end %>
         </div>
         <div class="flex-grow ml-4">
           <p class="text-lg font-semibold"><%= goal.content %></p>

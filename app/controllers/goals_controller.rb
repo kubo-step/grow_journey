@@ -1,9 +1,8 @@
 class GoalsController < ApplicationController
   before_action :find_goal, only: %i[show edit update destroy toggle]
+  before_action :load_goals, only: %i[index completed_goals]
 
-  def index
-    @goals = current_user.goals.includes(:category).order(created_at: :desc)
-  end
+  def index;end
 
   def show;end
 
@@ -37,16 +36,10 @@ class GoalsController < ApplicationController
 
   def toggle
     @goal.update(checked: !@goal.checked)
-    if @goal.checked
-      render turbo_stream: turbo_stream.remove(@goal)
-    else
-      render turbo_stream: turbo_stream.update(@goal, partial: 'goal')
-    end
+    render turbo_stream: turbo_stream.remove(@goal)
   end
 
-  def completed_goals
-    @goals = current_user.goals.includes(:category).order(created_at: :desc)
-  end
+  def completed_goals;end
 
   private
 
@@ -56,5 +49,9 @@ class GoalsController < ApplicationController
 
   def find_goal
     @goal = current_user.goals.find(params[:id])
+  end
+
+  def load_goals
+    @goals = current_user.goals.includes(:category).order(created_at: :desc)
   end
 end

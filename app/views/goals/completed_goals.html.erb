@@ -1,4 +1,5 @@
 <% content_for(:title, t('.title')) %>
+<%= render "modal" %>
 <div class="flex flex-wrap justify-center">
   <div class="card w-full max-w-lg mx-4 mb-8 shadow-2xl">
     <div class="card-body">
@@ -6,7 +7,9 @@
         <% if @goals.present? %>
           <%= turbo_frame_tag Goal.new %>
           <div id="goals">
-            <%= render @goals.select{ |g| g.is_goal? && g.checked? } %>
+            <%= turbo_frame_tag "goals" do %>
+              <%= render @goals.select{ |g| g.is_goal? && g.checked? } %>
+            <% end %>
           </div>
         <% end %>
     </div>
@@ -16,8 +19,11 @@
       <div class="font-bold text-center text-xl">達成したタスク</div>
       <% if @goals.present? %>
         <%= turbo_frame_tag Goal.new %>
-        <div id="goals">
-          <%= render @goals.select{ |g| !g.is_goal? && g.checked? } %>
+        <%# turbo_streamで更新するためにtasksで囲む %>
+        <div id="tasks">
+            <%= turbo_frame_tag "tasks" do %>
+              <%= render @goals.select{ |g| !g.is_goal? && g.checked? } %>
+            <% end %>
         </div>
       <% end %>
     </div>
