@@ -17,8 +17,8 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 #
 # port ENV.fetch("PORT") { 3000 }
 ssl_bind "0.0.0.0", "3000", {
-  cert: "config/cert/localhost.pem",
-  key: "config/cert/localhost-key.pem"
+  cert: "config/certs/localhost.pem",
+  key:  "config/certs/localhost-key.pem"
 }
 
 # Specifies the `environment` that Puma will run in.
