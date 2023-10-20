@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // csrf-tokenを取得
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   // LIFF_ID を定数定義
-  const LIFF_ID = ENV['LIFF_ID'];
+  const LIFF_ID = "2001203919-0r2akrrV"
   // LIFF_IDを使ってLIFFの初期化
   liff
   .init({
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // bodyにパラメーターの設定
     const body =`idToken=${idToken}`
     // リクエスト内容の定義
-    const request = new Request('/user', {
+    const request = new Request('/users', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
         'X-CSRF-Token': token
@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
       method: 'POST',
       body: body
     });
- 
+
     // リクエストを送る
     fetch(request)
-    // jsonでレスポンスからデータを取得して/after_loginに遷移する
+    // jsonでレスポンスからデータを取得して/goalsに遷移する
     .then(response => response.json())
     .then(data => {
       data_id = data
@@ -42,4 +42,4 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location = '/goals'
     })
   })
- })
+})
