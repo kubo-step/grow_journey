@@ -8,15 +8,14 @@
         <%= link_to "達成一覧", completed_goals_goals_path, class:"btn btn-ghost rounded-btn" %>
         <a class="btn btn-ghost rounded-btn">開花一覧</a>
         <a class="btn btn-ghost rounded-btn">応援する</a>
-      <div class="dropdown dropdown-end">
-        <div class="btn btn-ghost rounded-btn">
+      <div class="dropdown dropdown-hover">
+        <label tabindex="0" class="btn btn-ghost rounded-btn">
           <%= image_tag current_user.avatar.url, size:'50x50', style:"border-radius: 50%;"%>
-        </div>
-          <ul tabindex="0" class="text-gray-700 menu dropdown-content z-[1] p-2 shadow bg-base-100 bg- rounded-box w-52 mt-4">
+        </label>
+          <ul tabindex="0" class="text-gray-700 dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
             <li><%= link_to t('profiles.show.title'), profiles_path, class: 'dropdown-item' %></li>
             <li><%= button_to t('defaults.logout'), logout_path, method: :delete %></li>
           </ul>
-        </label>
       </div>
     </div>
   </div>
