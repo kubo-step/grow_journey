@@ -2,6 +2,7 @@
 <%= turbo_stream_flash %>
 <div class="container mx-auto max-w-xl">
 	<div class="row">
+    <%= link_to '（LINE）ユーザー登録・ログイン', new_user_path, class: 'btn btn-success btn-lg' %>
 		<div class=" col-md-10 offset-md-1 col-lg-8 offset-lg-2">
 			<h1 class="text-center text-lg mt-3"><%= t('.title') %></h1>
       <%= form_with url: login_path, local: true do |f| %>
