@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true, length: { maximum: 255 }
+  validates :line_user_id, presence: true
 
   mount_uploader :avatar, AvatarUploader
 end
