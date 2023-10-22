@@ -2,7 +2,9 @@ class GoalsController < ApplicationController
   before_action :find_goal, only: %i[show edit update destroy toggle]
   before_action :load_goals, only: %i[index completed_goals]
 
-  def index;end
+  def index
+    @goals_count = @goals.where(checked: true).count
+  end
 
   def show;end
 
