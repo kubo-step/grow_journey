@@ -1,12 +1,15 @@
 <% content_for(:title, t('.title')) %>
 <%= render "modal" %>
 <div class="container mx-auto py-12 text-center">
-  <div class="mb-20">
-    <div class="text-2xl">あなたの現在の本数は〇〇本です</div>
+  <div class="mb-8">
+    <h2 class="text-ms font-bold mb-2 text-secondary">目標達成で花が咲きました！</h2>
+    <p class="text-xl border-secondary font-bold">あなたの花が咲いた数：<span class="text-5xl font-semibold"><%= @goals_count %></span>本</p>
   </div>
+
   <%= turbo_frame_tag Goal.new %>
+
   <div class="container mx-auto text-center">
-    <%= link_to '+', new_goal_path, class: 'btn btn-secondary mt-4 text-2xl w-full max-w-lg', data: { turbo_frame: dom_id(Goal.new)} %>
+    <%= link_to '新しい目標を追加', new_goal_path, class: 'btn btn-secondary mt-4 text-lg w-full max-w-lg', data: { turbo_frame: dom_id(Goal.new) } %>
   </div>
 </div>
 <div class="flex flex-wrap justify-center">
