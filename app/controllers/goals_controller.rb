@@ -2,7 +2,11 @@ class GoalsController < ApplicationController
   before_action :find_goal, only: %i[show edit update destroy toggle]
   before_action :load_goals, only: %i[index completed_goals]
 
-  def index;end
+  def index
+    @goals_count = @goals.where(checked: true).count
+    @images = ["flower01_cherry_blossoms.gif","flower02_marigold.gif","flower03_himejoon.gif"]
+    @image = @images.sample
+  end
 
   def show;end
 
