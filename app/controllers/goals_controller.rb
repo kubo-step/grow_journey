@@ -4,6 +4,8 @@ class GoalsController < ApplicationController
 
   def index
     @goals_count = @goals.where(checked: true).count
+    @images = ["flower01_cherry_blossoms.gif","flower02_marigold.gif","flower03_himejoon.gif"]
+    @image = @images.sample
   end
 
   def show;end
