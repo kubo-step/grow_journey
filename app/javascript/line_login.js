@@ -1,23 +1,16 @@
-console.log("new");
-
-
-// DOMが読み込まれたら処理が走る
 document.addEventListener('DOMContentLoaded', () => {
   // csrf-tokenを取得
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  // LIFF_ID を定数定義
-  const LIFF_ID = "2001203919-0r2akrrV"
-  // LIFF_IDを使ってLIFFの初期化
+  const LIFF_ID = gon.liff_id;
+
   liff
   .init({
     liffId: LIFF_ID,
-    // 他のブラウザで開いたときは初期化と一緒にログインもさせるオプション
     withLoginOnExternalBrowser: true
   })
     // 初期化後の処理の設定
   liff
-   .ready.then(() => {
-    //  初期化によって取得できるidtokenの定義
+  .ready.then(() => {
     const idToken = liff.getIDToken()
     // bodyにパラメーターの設定
     const body =`idToken=${idToken}`
@@ -41,5 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(() => {
       window.location = '/goals'
     })
+    .catch((err) => {
+      console.log(err);
+    })
   })
-})
+});

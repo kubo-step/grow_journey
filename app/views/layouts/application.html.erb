@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "https://unpkg.com/modern-css-reset/dist/reset.min.css" %>
+    <%= include_gon %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   </head>
 
   <body class="flex flex-col min-h-screen">
@@ -21,7 +22,6 @@
       <div id="flash">
         <%= render "shared/flash" %>
       </div>
-      <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
