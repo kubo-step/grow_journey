@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root "top_pages#top"
-  delete 'logout', to: 'user_sessions#destroy'
+  delete 'logout', to: 'users#destroy'
 
   resources :users, only: %i[new create]
   resources :goals do
