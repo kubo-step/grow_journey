@@ -5,6 +5,8 @@ ja:
     logout: 'ログアウト'
     message:
       require_login: 'ログインしてください'
+      updated: '更新しました'
+      not_updated: '更新に失敗しました'
   users:
     new:
       title: '新規登録'
