@@ -23,17 +23,17 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-
-  close.addEventListener('click', () => {
-    modal.classList.add('hidden');
-    mask.classList.add('hidden');
-    modalImage.classList.add('hidden');
-    location.reload();
-  });
-
-  mask.addEventListener('click', () => {
-    close.click();
-  });
+  if (!close){ return false;}
+    close.addEventListener('click', () => {
+      modal.classList.add('hidden');
+      mask.classList.add('hidden');
+      modalImage.classList.add('hidden');
+      location.reload();
+    });
+  if (!mask){ return false;}
+    mask.addEventListener('click', () => {
+      close.click();
+    });
 
   function sendCheckboxState(toggleButton) {
     const goalId = toggleButton.id.split('-')[2]; // goal.id の抽出
