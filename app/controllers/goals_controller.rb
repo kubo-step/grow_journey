@@ -1,11 +1,10 @@
 class GoalsController < ApplicationController
   before_action :find_goal, only: %i[show edit update destroy toggle]
   before_action :load_goals, only: %i[index completed_goals]
+  before_action :set_image, only: %i[index completed_goals]
 
   def index
     @goals_count = @goals.where(checked: true).count
-    @images = ["flower01_cherry_blossoms.gif","flower02_marigold.gif","flower03_himejoon.gif"]
-    @image = @images.sample
   end
 
   def show;end
@@ -43,9 +42,7 @@ class GoalsController < ApplicationController
     render turbo_stream: turbo_stream.remove(@goal)
   end
 
-  def completed_goals
-    @images = [""]
-  end
+  def completed_goals;end
 
   private
 
@@ -59,5 +56,10 @@ class GoalsController < ApplicationController
 
   def load_goals
     @goals = current_user.goals.includes(:category).order(created_at: :desc)
+  end
+
+  def set_image
+    images = ["flower01_cherry_blossoms.gif","flower02_marigold.gif","flower03_himejoon.gif"]
+    @image = images.sample
   end
 end
