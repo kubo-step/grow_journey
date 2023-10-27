@@ -1,7 +1,9 @@
 <!-- モーダル -->
 <section id="modal" class="hidden">
     <!-- 画像表示用の要素 -->
-  <%= image_tag @image, id: "modalImage", class: "hidden" %>
+  <% if @image.nil? %>
+    <%= image_tag @image, id: "modalImage", class: "hidden" %>
+  <% end %>
   <p class="text-center text-xl ">Congratulations!</p>
   <div id="close" class="hover:bg-gray-100">
     閉じる
