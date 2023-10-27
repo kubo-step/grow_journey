@@ -1,6 +1,6 @@
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
   const close = document.getElementById('close');
   const modal = document.getElementById('modal');
   const mask = document.getElementById('mask');

@@ -43,7 +43,9 @@ class GoalsController < ApplicationController
     render turbo_stream: turbo_stream.remove(@goal)
   end
 
-  def completed_goals;end
+  def completed_goals
+    @images = [""]
+  end
 
   private
 
