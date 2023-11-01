@@ -1,4 +1,5 @@
 class GoalsController < ApplicationController
+  before_action :login_required
   before_action :find_goal, only: %i[show edit update destroy toggle]
   before_action :load_goals, only: %i[index completed_goals]
   before_action :set_image, only: %i[index completed_goals]
@@ -26,7 +27,7 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
-      flash.now[:success] = "更新しました"
+      flash.now[:success] = t('defaults.message.updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,11 +35,11 @@ class GoalsController < ApplicationController
 
   def destroy
     @goal.destroy
-    flash.now[:success] = "削除しました"
+    flash.now[:success] = t('defaults.message.deleted')
   end
 
   def toggle
-    @goal.update(checked: !@goal.checked)
+    @goal.toggle_checked!(current_user, session[:selected_image])
     render turbo_stream: turbo_stream.remove(@goal)
   end
 
@@ -61,5 +62,6 @@ class GoalsController < ApplicationController
   def set_image
     images = ["flower01_cherry_blossoms.gif","flower02_marigold.gif","flower03_himejoon.gif"]
     @image = images.sample
+    session[:selected_image] = @image
   end
 end
