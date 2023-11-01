@@ -18,8 +18,10 @@ document.addEventListener('turbo:load', function() {
         sendCheckboxState(toggleButton);
       } else {
         // チェックが外れた場合の処理
-        sendCheckboxState(toggleButton);
-        location.reload();
+        sendCheckboxState(toggleButton).then(() => {
+          // チェック状態の変更後にページをリロード
+          Turbo.visit(window.location.href);
+        });
       }
     });
   });
