@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'users#destroy'
 
   resources :users, only: %i[new create]
+  get 'flowers', to: 'users#flowers'
   resources :goals do
     member do
       patch :toggle

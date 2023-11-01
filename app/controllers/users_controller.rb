@@ -26,4 +26,9 @@ class UsersController < ApplicationController
     reset_session
     redirect_to root_path, notice: t('.success')
   end
+
+  def flowers
+    @flower_images = FlowerImage.all
+    @user_flower_image = current_user.user_flower_images
+  end
 end
