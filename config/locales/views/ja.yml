@@ -7,6 +7,7 @@ ja:
       require_login: 'ログインしてください'
       updated: '更新しました'
       not_updated: '更新に失敗しました'
+      deleted: '削除しました'
   users:
     new:
       title: '新規登録'
@@ -14,16 +15,6 @@ ja:
     create:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
-  user_sessions:
-    new:
-      title: 'ログイン'
-      to_new_user_page: '登録ページへ'
-      to_forget_password: 'パスワードをお忘れの方はこちら'
-    create:
-      success: 'ログインしました'
-      fail: 'ログインに失敗しました'
-    destroy:
-      success: 'ログアウトしました'
   goals:
     index:
       no_result: '0件'
