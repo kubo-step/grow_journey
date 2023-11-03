@@ -27,7 +27,11 @@
       </div>
 
       <div class="flex justify-between">
-        <%= link_to "キャンセル", goals_path, class: "btn btn-outline-secondary" %>
+        <% if @goal.checked?%>
+          <%= link_to 'キャンセル', completed_goals_goals_path, class: "btn" %>
+        <% else %>
+          <%= link_to 'キャンセル', goals_path, class: "btn" %>
+        <% end %>
         <%= f.submit "保存", class: 'btn btn-secondary' %>
       </div>
     <% end %>
