@@ -1,22 +1,33 @@
 <div class="navbar bg-accent text-white">
-  <div class="flex-1 px-2 lg:flex-none">
-    <a class="text-lg font-bold"><%= link_to 'GrowJourney', goals_path %></a>
+  <div class="navbar-start">
+    <div class="dropdown">
+      <label tabindex="0" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      </label>
+      <ul tabindex="0" class="menu menu-sm text-gray-700 dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li><%= link_to "目標・タスク一覧", goals_path %></li>
+        <li><%= link_to "達成一覧", completed_goals_goals_path %></li>
+        <li><%= link_to "開花一覧", flowers_path %><li>
+      </ul>
+    </div>
+    <%= link_to 'GrowJourney', goals_path, class: "text-lg font-bold" %>
   </div>
-  <div class="flex justify-end flex-1 px-2">
-    <div class="flex items-stretch">
-        <%= link_to "目標・タスク一覧", goals_path, class:"btn btn-ghost rounded-btn"%>
-        <%= link_to "達成一覧", completed_goals_goals_path, class:"btn btn-ghost rounded-btn" %>
-        <%= link_to "開花一覧", flowers_path, class:"btn btn-ghost rounded-btn" %>
-        <a class="btn btn-ghost rounded-btn">応援する</a>
-      <div class="dropdown dropdown-hover">
-        <label tabindex="0" class="btn btn-ghost rounded-btn">
-          <%= image_tag current_user.avatar.url, size:'50x50', style:"border-radius: 50%;"%>
-        </label>
-          <ul tabindex="0" class="text-gray-700 dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><%= link_to t('profiles.show.title'), profiles_path, class: 'dropdown-item' %></li>
-            <li><%= button_to t('defaults.logout'), logout_path, method: :delete %></li>
-          </ul>
-      </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+        <li><%= link_to "目標・タスク一覧", goals_path, class:"font-bold"%></li>
+        <li><%= link_to "達成一覧", completed_goals_goals_path, class:"font-bold" %></li>
+        <li><%= link_to "開花一覧", flowers_path, class:"font-bold" %><li>
+    </ul>
+  </div>
+  <div class="navbar-end">
+    <div class="dropdown dropdown-hover">
+      <label tabindex="0" class="btn btn-ghost rounded-btn">
+        <%= image_tag current_user.avatar.url, size:'50x50', style:"border-radius: 50%;"%>
+      </label>
+        <ul tabindex="0" class="text-gray-700 dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li><%= link_to t('profiles.show.title'), profiles_path, class: 'dropdown-item' %></li>
+          <li><%= button_to t('defaults.logout'), logout_path, method: :delete %></li>
+        </ul>
     </div>
   </div>
 </div>
