@@ -5,7 +5,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :line_user_id, presence: true, uniqueness: true, on: :edit
-  validates :user_id, uniqueness: { scope: :flower_image_id }
 
   mount_uploader :avatar, AvatarUploader
 end
