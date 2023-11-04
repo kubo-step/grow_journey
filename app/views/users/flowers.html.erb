@@ -1,23 +1,22 @@
-<div class="flex flex-wrap justify-center">
-  <%= puts @user_flower_image %>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
   <% @flower_images.each do |flower_image| %>
-    <div class="p-2 w-1/3 sm:w-1/2">
-      <div class="border border-gray-200 rounded-lg">
-        <div class="mt-4">
+    <div class="p-2">
+      <div class="border border-gray-200 rounded-lg w-full">
+        <div class="p-4 flex flex-col place-items-center">
           <% if current_user.user_flower_images.where(flower_image_id: flower_image.id, unlocked: true).exists? %>
-            <%= image_tag flower_image.flower_url, class: "max-w-full h-auto rounded-lg p-4", size: "300x200" %>
-            <div class="p-4 w-xl text-center">
+            <%= image_tag flower_image.flower_url, class: "max-w-full h-auto rounded-lg", size: "300x200" %>
+            <div class="text-center mt-4 w-full">
               <h5 class="font-bold text-lg mb-2"><%= flower_image.flower_name%></h5>
-              <div class="whitespace-pre-wrap text-gray-700 text-base">
+              <div class="text-gray-700 text-sm">
                 <p>花言葉：<%= flower_image.flower_language %></p>
                 <p>開花時期：<%= flower_image.flower_season %></p>
               </div>
             </div>
           <% else%>
-            <%= image_tag "user_avatar_sample.png", class: "rounded-lg p-4 object-contain", size: "233x233"%>
-            <div class="p-4 w-xl text-center">
+            <%= image_tag "user_avatar_sample.png", class: "max-w-full h-auto rounded-lg", size: "233x233"%>
+            <div class="text-center mt-4 w-full">
               <h5 class="font-bold text-lg mb-2">???</h5>
-              <div class="whitespace-pre-wrap text-gray-700 text-base">
+              <div class="text-gray-700 text-sm">
                 <p>花言葉：???</p>
                 <p>開花時期：???</p>
               </div>
