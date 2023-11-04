@@ -1,0 +1,22 @@
+<%= turbo_frame_tag @goal do %>
+  <div class="card max-w-lg mx-auto mb-3 p-4 rounded-lg border border-gray-300">
+    <div class="border rounded-lg mb-3 p-4">
+      <!-- 目標の詳細情報を表示 -->
+      <p class="card-title"><%= @goal.content %></p>
+      <div class="w-14 bg-primary bg-opacity-50 text-xs rounded-full px-2 py-1 text-white">
+        <%= @goal.category.name %>
+      </div>
+      <p>登録日: <%= l @goal.created_at, format: :long %></p>
+      <p>達成予定日: <%= l @goal.deadline, format: :long %></p>
+      <!-- その他の情報 -->
+    </div>
+    <div class="flex justify-between items-center">
+      <% if @goal.checked?%>
+        <%= link_to 'キャンセル', completed_goals_goals_path, class: "btn" %>
+      <% else %>
+        <%= link_to 'キャンセル', goals_path, class: "btn" %>
+      <% end %>
+      <%= link_to '編集', edit_goal_path(@goal), class: "btn btn-secondary" %>
+    </div>
+  </div>
+<% end %>

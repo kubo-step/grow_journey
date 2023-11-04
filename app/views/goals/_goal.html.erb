@@ -10,7 +10,9 @@
         <% end %>
         </div>
         <div class="flex-grow ml-4">
-          <p class="text-lg font-semibold"><%= goal.content %></p>
+          <%= link_to goal_path(goal) do %>
+            <p class="text-lg font-semibold"><%= goal.content %></p>
+          <% end %>
           <p class="text-xs text-gray-500"><%= l goal.deadline, format: :short %></p>
         </div>
         <div class="flex items-center space-x-2">
