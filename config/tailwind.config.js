@@ -20,5 +20,19 @@ module.exports = {
   ],
   plugins: [
     require('daisyui'),
-  ]
+  ],
+  theme: {
+    extend: {
+      // ここでカスタムアニメーションを定義します
+      animation: {
+        'fade-in-up': 'fadeInUp 1.5s ease-out',
+      },
+      keyframes: {
+        fadeInUp: {
+          '0%': { transform: 'translateY(10%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+    },
+  },
 }
