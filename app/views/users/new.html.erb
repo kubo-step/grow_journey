@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
       <h1 class="text-center text-lg mt-3"><%= t('.title')%></h1>
-      <p>Loading・・・</p>
+      <span class="loading loading-spinner text-success"></span>
       <p>※時間がかかることがございます。</p>
       <%= javascript_include_tag "line_login", "data-turbo-track": "reload", defer: true %>
     </div>
