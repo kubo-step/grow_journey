@@ -33,6 +33,10 @@ module.exports = {
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
       },
+      colors: {
+        'line-green': '#06C755',
+        'line-dark-green': '#008c00',
+      },
     },
   },
 }
