@@ -8,5 +8,7 @@
     </p>
     <%= link_to '早速始めてみる', new_user_registration_path, method: :post,
       class: 'mt-8 btn bg-accent text-white sm:btn-sm lg:btn-lg', data: { turbo: false } %>
+    <%= button_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post,
+    class: 'btn bg-accent text-white sm:btn-sm lg:btn-lg', data: { turbo: false } %>
   </div>
 </div>
