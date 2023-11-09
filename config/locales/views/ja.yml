@@ -3,6 +3,7 @@ ja:
     login: 'ログイン'
     register: '登録'
     logout: 'ログアウト'
+    to_login_page: 'ログインページへ'
     message:
       login: 'ログインしました'
       require_login: 'ログインしてください'
@@ -10,9 +11,9 @@ ja:
       not_updated: '更新に失敗しました'
       deleted: '削除しました'
   users:
-    new:
-      title: '新規登録'
-      to_login_page: 'ログインページへ'
+      registrations:
+        new:
+          title: '新規登録'
   goals:
     index:
       no_result: '0件'

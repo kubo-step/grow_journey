@@ -26,7 +26,7 @@
       </label>
         <ul tabindex="0" class="text-gray-700 dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
           <li><%= link_to t('profiles.show.title'), profiles_path, class: 'dropdown-item' %></li>
-          <li><%= button_to t('defaults.logout'), logout_path, method: :delete %></li>
+          <li><%= button_to t('defaults.logout'), destroy_user_session_path, method: :delete %></li>
         </ul>
     </div>
   </div>

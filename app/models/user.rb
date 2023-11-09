@@ -25,4 +25,17 @@ class User < ApplicationRecord
     credentials = omniauth["credentials"].to_json
     name = omniauth["info"]["name"]
   end
+
+  # ゲストユーザーを作成する
+  def self.guest
+    guest_email = "guest_#{SecureRandom.hex(10)}@example.com"
+    guest_password = SecureRandom.urlsafe_base64
+    guest_uid = SecureRandom.uuid  # 一意のUIDを生成
+
+    create!(uid: guest_uid, provider: "guest_provider") do |user|
+      user.email = guest_email
+      user.password = guest_password
+      user.name = "ゲスト"
+    end
+  end
 end

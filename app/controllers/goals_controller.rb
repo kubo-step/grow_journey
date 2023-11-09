@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  before_action :login_required
+  before_action :authenticate_user!
   before_action :find_goal, only: %i[show edit update destroy toggle]
   before_action :load_goals, only: %i[index completed_goals]
   before_action :set_image, only: %i[index completed_goals]
@@ -8,7 +8,7 @@ class GoalsController < ApplicationController
     @goals_count = @goals.where(checked: true).count
   end
 
-  def show;end
+  def show; end
 
   def new
     @goal = Goal.new
@@ -17,7 +17,7 @@ class GoalsController < ApplicationController
   def create
     @goal = current_user.goals.build(goal_params)
     if @goal.save
-      flash.now[:success] = t('.success')
+      flash.now[:success] = t(".success")
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
-      flash.now[:success] = t('defaults.message.updated')
+      flash.now[:success] = t("defaults.message.updated")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class GoalsController < ApplicationController
 
   def destroy
     @goal.destroy
-    flash.now[:success] = t('defaults.message.deleted')
+    flash.now[:success] = t("defaults.message.deleted")
   end
 
   def toggle
@@ -43,7 +43,7 @@ class GoalsController < ApplicationController
     render turbo_stream: turbo_stream.remove(@goal)
   end
 
-  def completed_goals;end
+  def completed_goals; end
 
   private
 
@@ -60,7 +60,7 @@ class GoalsController < ApplicationController
   end
 
   def set_image
-    images = ["flower01_cherry_blossoms.gif","flower02_marigold.gif","flower03_himejoon.gif"]
+    images = ["flower01_cherry_blossoms.gif", "flower02_marigold.gif", "flower03_himejoon.gif"]
     @image = images.sample
     session[:selected_image] = @image
   end
