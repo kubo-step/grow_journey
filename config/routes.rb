@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  root "top_pages#top"
-  delete 'logout', to: 'users#destroy'
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks",
+    registrations: 'users/registrations',
+    sessions: "users/sessions",
+  }
 
-  resources :users, only: %i[new create]
+  root "top_pages#top"
+
   get 'flowers', to: 'users#flowers'
   resources :goals do
     member do

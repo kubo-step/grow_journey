@@ -4,6 +4,7 @@ ja:
     register: '登録'
     logout: 'ログアウト'
     message:
+      login: 'ログインしました'
       require_login: 'ログインしてください'
       updated: '更新しました'
       not_updated: '更新に失敗しました'
@@ -12,9 +13,6 @@ ja:
     new:
       title: '新規登録'
       to_login_page: 'ログインページへ'
-    create:
-      success: 'ユーザー登録が完了しました'
-      fail: 'ユーザー登録に失敗しました'
   goals:
     index:
       no_result: '0件'
@@ -32,3 +30,8 @@ ja:
       title: 'プロフィール'
     edit:
       title: 'プロフィール編集'
+  devise:
+    registrations:
+      user:
+        success: 'ユーザー登録が完了しました'
+        fail: 'ユーザー登録に失敗しました'
