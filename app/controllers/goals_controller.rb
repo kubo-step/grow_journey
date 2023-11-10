@@ -6,6 +6,7 @@ class GoalsController < ApplicationController
 
   def index
     @goals_count = @goals.where(checked: true).count
+    @goals_count_modal = @goals_count + 1
   end
 
   def show; end
@@ -16,20 +17,26 @@ class GoalsController < ApplicationController
 
   def create
     @goal = current_user.goals.build(goal_params)
-    if @goal.save
-      flash.now[:success] = t(".success")
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @goal.save
+        format.html { redirect_to goals_path, notice: t(".success") }
+        format.turbo_stream { flash.now[:success] = t(".success") }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
   def edit; end
 
   def update
-    if @goal.update(goal_params)
-      flash.now[:success] = t("defaults.message.updated")
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @goal.update(goal_params)
+        format.html { redirect_to goals_path, notice: t(".success") }
+        format.turbo_stream { flash.now[:success] = t("defaults.message.updated") }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
