@@ -57,6 +57,8 @@ gem 'dotenv-rails'
 gem 'gon'
 
 gem 'carrierwave'
+gem "aws-sdk-s3", require: false
+gem 'fog-aws'
 gem "font-awesome-sass"
 gem 'pry-byebug'
 gem 'rails-i18n'
