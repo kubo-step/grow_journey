@@ -53,8 +53,6 @@ gem "bootsnap", require: false
 # 環境変数の管理
 gem 'dotenv-rails'
 
-# RailsとJavascriptの変数連携
-gem 'gon'
 
 gem 'carrierwave'
 gem "font-awesome-sass"

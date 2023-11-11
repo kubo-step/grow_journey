@@ -2,4 +2,3 @@
 import "@hotwired/turbo-rails";
 import "controllers";
 import "modal";
-import "line_login";
