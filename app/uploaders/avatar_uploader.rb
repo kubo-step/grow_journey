@@ -5,8 +5,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Choose what kind of storage to use for this uploader:
   #画像をアップロード
-  storage :file
-  # storage :fog
+  if Rails.env.production?
+    storage :fog # 本番環境ではfogを使用
+  else
+    storage :file # 開発環境とテスト環境ではfileを使用
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
