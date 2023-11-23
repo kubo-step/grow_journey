@@ -48,6 +48,7 @@ RUNTEQ受講生、20代〜30代の自分自身の成長が感じにくくなり�
 ### MVP
 * 会員登録(LINE)
 * ログイン
+* ゲストログイン
 * 目標・課題一覧
 * 目標・課題登録
 * 目標・課題詳細
@@ -59,10 +60,10 @@ RUNTEQ受講生、20代〜30代の自分自身の成長が感じにくくなり�
   * 達成する度に花が咲くアニメーションgifを表示させる
 * リマインド機能(LINE通知)
   * ユーザーが設定した目標・課題期限をLINE通知でお知らせしてくれる機能
-
-### その後の機能
 * カテゴリ別の目標設定機能
   * 仕事・家事・健康・趣味など
+
+### その後の機能
 * ご褒美の設定機能(画像アップロード)
   * 何本達成したら〇〇買う、〇〇するなど
 * 応援機能
@@ -90,7 +91,7 @@ https://www.figma.com/file/QEouHQ91wsvypoVv6PZ4rm/Untitled?type=design&node-id=0
 ### ER図
 draw.io
 https://drive.google.com/file/d/1Y8aqXJHzS9J6XB_c085kjEaBiqWMhNVS/view?usp=sharing
-<a href="https://gyazo.com/0a98e7f97eec752e26951d179260d904"><img src="https://i.gyazo.com/0a98e7f97eec752e26951d179260d904.png" alt="Image from Gyazo" width="1339"/></a>
+<a href="https://gyazo.com/0a8be70492a6cb154a892be1393ac7ed"><img src="https://i.gyazo.com/0a8be70492a6cb154a892be1393ac7ed.png" alt="Image from Gyazo" width="1169"/></a>
 
 ## 各テーブルの説明
 * **Usersテーブル** (ユーザー情報を格納)
@@ -98,20 +99,13 @@ https://drive.google.com/file/d/1Y8aqXJHzS9J6XB_c085kjEaBiqWMhNVS/view?usp=shari
    * `name` アプリ上での表示名
    * `email` メールアドレス
    * `avatar` アプリ上のユーザーアイコン
-   * `crypted_password` Sorcery(Gem)によってハッシュ化されるパスワード
-   * `salt` Sorcery(Gem)によってパスワードハッシュの計算に使用されるランダムな文字列
-   * `reset_password_token`　パスワードリセットのためのトークン
-   * `reset_password_token_expires_at` パスワードリセットトークンの有効期限
-   * `reset_password_email_sent_at` パスワードリセットメール送信時刻
-   * `access_count_to_reset_password_page`  パスワードリセットページへのアクセス回数
- 
- * **Line_accountsテーブル** (連携するLINEアカウントを格納)
-   * `id` 主キー
-   * `user_id` 外部キー、Usersテーブルとhas_oneアソシエーション
-   * `line_user_id` LINE連携により取得できるLINE上でのID
-   * `line_name` LINE連携により取得できるLINE上での表示名
-   * `picture_url` LINE連携により取得できるLINE上で設定されたプロフィール画像のURL
- 
+   * `provider` 使用する外部認証サービスの名前
+   * `uid` LINE連携により取得できるLINE上でのID
+   * `encrypted_password` devise(Gem)によって暗号化されるパスワード
+   * `reset_password_token` パスワードリセットのためのトークン
+   * `reset_password_sent_at`パスワードリセットメール送信時刻
+   * `remember_created_at` ログイン情報の保持
+
  * **Goalsテーブル** (目標情報を格納)
    * `id` 主キー
    * `user_id` 外部キー、Usersテーブルとhas_manyアソシエーション
@@ -142,5 +136,14 @@ https://drive.google.com/file/d/1Y8aqXJHzS9J6XB_c085kjEaBiqWMhNVS/view?usp=shari
    * `user_id` 外部キー、Usersテーブルとhas_manyアソシエーション
    * `goal_id` 外部キー、Goalsテーブルとhas_manyアソシエーション
 
+ * **Flower_imagesテーブル**(アニメーションgifを格納)
+   * `id` 主キー
+   * `flower_name` 花の名前
+   * `flower_season` 開花時期
+   * `flower_language` 花言葉
+   * `flower_url` gifのURL
 
-
+ * **User_flower_images**(flower_imageの中間テーブル)
+   * `flower_image_id` 外部キー、flower_imagesテーブルとhas_manyアソシエーション
+   * `user_id` 外部キー、userテーブルとhas_manyアソシエーション
+   * `unlocked` ユーザーがflower_imagesの画像を閲覧できるかどうかを判定
