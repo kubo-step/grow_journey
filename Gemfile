@@ -8,7 +8,6 @@ gem "rails", "~> 7.0.7", ">= 7.0.7.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
@@ -64,6 +63,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-line'
 gem 'omniauth-rails_csrf_protection'
+gem 'line-bot-api'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
