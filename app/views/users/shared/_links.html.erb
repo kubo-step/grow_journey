@@ -3,25 +3,17 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name), class: "mb-2" %><br />
+  <%= link_to t("devise.shared.links.sign_up"), new_registration_path(resource_name), class: "mb-2" %><br />
 <% end %>
 
-<% if false%>
-  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    <%= link_to "Forgot your password?", new_password_path(resource_name), class: "mb-2"%><br />
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to t("devise.shared.links.forgot_your_password"), new_password_path(resource_name), class: "mb-2"%><br />
+<% end %>
+
+<%- unless controller_name == 'passwords' && action_name == 'new' %>
+  <%- if devise_mapping.omniauthable? %>
+    <%= button_to omniauth_authorize_path(resource_name, :line), class: "bg-line-green hover-line-dark-green text-white font-bold py-2 px-4 rounded", data: { turbo: false } do %>
+      <%= image_tag "provider/line_logo.png", alt: "LINE", class: "inline-block mr-2" %><%= t("devise.shared.links.sign_in_with_provider", provider: "LINE") %>
+    <% end %><br />
   <% end %>
-<% end %>
-
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "mb-2" %><br />
-<% end %>
-
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "mb-2" %><br />
-<% end %>
-
-<%- if devise_mapping.omniauthable? %>
-  <%= button_to omniauth_authorize_path(resource_name, :line), class: "bg-line-green hover-line-dark-green text-white font-bold py-2 px-4 rounded", data: { turbo: false } do %>
-    <%= image_tag "provider/line_logo.png", alt: "LINE", class: "inline-block mr-2" %>LINEでログイン
-  <% end %><br />
 <% end %>
