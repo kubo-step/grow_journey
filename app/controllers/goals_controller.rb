@@ -67,7 +67,9 @@ class GoalsController < ApplicationController
   end
 
   def set_image
-    images = ["flower01_cherry_blossoms.gif", "flower02_marigold.gif", "flower03_himejoon.gif"]
+    images = ["flower01_cherry_blossoms.gif", "flower02_marigold.gif", "flower03_himejoon.gif", "flower04_sunflower.gif",
+              "flower05_gerbera.gif"
+            ]
     @image = images.sample
     session[:selected_image] = @image
   end
