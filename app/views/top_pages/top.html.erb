@@ -8,25 +8,25 @@
       あなたの日々の達成と成長を美しい花で記録しませんか？
     </p>
     <%= link_to 'さっそく使ってみる', new_user_registration_path, method: :post,
-      class: 'mt-8 btn bg-accent text-white sm:btn-sm lg:btn-lg', data: { turbo: false } %>
+      class: 'mt-2 btn bg-accent text-white sm:btn-sm lg:btn-lg', data: { turbo: false } %>
     <p class="mt-4 text-base sm:text-lg md:text-xl text-white">
       登録せずにちょっと使ってみる
     </p>
     <%= button_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post,
-      class: 'mt-8 btn bg-accent text-white sm:btn-sm lg:btn-lg', data: { turbo: false } %>
+      class: 'mt-2 btn bg-accent text-white sm:btn-sm lg:btn-lg', data: { turbo: false } %>
   </div>
   <div class="fixed bottom-0 left-0 mb-4 ml-4 animate-bounce">
     <i class="fas fa-arrow-down text-white text-3xl"></i>
   </div>
 </div>
 
-<div class="px-4 sm:px-6 pt-8 sm:pt-14 pb-5 mx-auto">
+<div class="px-4 sm:px-6 pt-8 sm:pt-14 pb-5 max-w-7xl mx-auto">
   <p class="text-xl md:text-2xl font-bold text-center pb-5">Grow Journeyでできること</p>
   <div class="grid grid-cols-1 gap-2 mt-4 md:grid-cols-2">
     <div class="flex flex-col items-center mx-5 mb-5 p-6 space-y-3 text-center bg-white rounded-xl shadow-lg bg-base-100">
       <p class="text-lg md:text-xl font-bold">目標・タスクの設定と達成</p>
       <p class="text-xs md:text-sm">
-        勉強、仕事、健康、趣味など、目標を設定し、それに対するタスクも設定します
+        勉強、仕事、健康、趣味など、目標を設定し、それに対するタスクも設定します。
       </p>
       <%= image_tag "goalsample.webp" %>
     </div>
@@ -37,19 +37,21 @@
       </p>
       <%= image_tag "flower.webp"%>
     </div>
-    <div class="flex flex-col items-center mx-5 mb-5 p-6 space-y-3 text-center bg-white rounded-xl shadow-lg bg-base-100">
+    <div class="flex flex-col items-center mx-5 mb-5 p-6 text-center bg-white rounded-xl shadow-lg bg-base-100">
       <p class="text-lg md:text-xl font-bold">LINE通知機能</p>
-      <p class="text-xs md:text-sm">
-        目標の期限を忘れずに、LINE通知でリマインドします。<br>
-        ※この機能は未実装です※
+      <p class="text-xs md:text-sm mt-3">
+        目標・タスクの達成予定日を忘れないように、LINE通知でリマインドします。<br>
       </p>
+      <%= image_tag "bell.jpeg", class: "my-20"%>
     </div>
-    <div class="flex flex-col items-center mx-5 mb-5 p-6 space-y-3 text-center bg-white rounded-xl shadow-lg bg-base-100">
-      <p class="text-lg md:text-xl font-bold">SNS共有</p>
-      <p class="text-xs md:text-sm">
-        目標の宣言や達成をSNSで共有し、モチベーションを保ちます。
+    <div class="flex flex-col items-center mx-5 mb-5 p-6 text-center bg-white rounded-xl shadow-lg bg-base-100">
+      <p class="text-lg md:text-xl font-bold">SNS共有機能</p>
+      <p class="text-xs md:text-sm mt-3">
+        達成記録をSNSで共有し、モチベーションを保ちます。
       </p>
+      <%= image_tag "吹き出し.jpeg", class: "my-20"%>
     </div>
+
   </div>
 </div>
 
