@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
 
   root "top_pages#top"
+  get "privacy_policy", to: "top_pages#privacy_policy"
+  get "terms", to: "top_pages#terms"
 
   get "flowers", to: "flower#index"
   resources :goals do
