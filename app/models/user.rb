@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[line]
 
   has_many :goals, dependent: :destroy
+  has_many :tasks, through: :goals
   has_many :user_flower_images, dependent: :destroy
   has_many :flower_images, through: :user_flower_images, source: :flower_images
 
