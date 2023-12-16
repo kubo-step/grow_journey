@@ -4,6 +4,7 @@ class Goal < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   validates :content, presence: true, length: { maximum: 255 }
+  validates :category_id, presence: { message: 'を選択してください' }
 
   def is_goal?
     self.is_goal == true
