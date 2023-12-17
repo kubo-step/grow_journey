@@ -12,3 +12,6 @@ ja:
       goal:
         content: '目標'
         deadline: '達成予定日'
+        category_id: カテゴリー
+      task:
+        content: やること
