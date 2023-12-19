@@ -12,7 +12,7 @@ module ApplicationHelper
     return unless object.errors[field].any?
 
     field_name = object.class.human_attribute_name(field)
-    message = object.errors[field].join("/")
+    message = object.errors[field].join(", ")
     messages = "*#{field_name}#{message}"
     content_tag(:p, messages, class: "text-sm text-red-500")
   end
