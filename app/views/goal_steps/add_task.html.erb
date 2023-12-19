@@ -1,0 +1,42 @@
+<% content_for(:title, t('.title')) %>
+<div class="card flex-shrink-0 w-full max-w-lg shadow-2xl mx-auto mt-12 mb-12">
+  <div class="card-body">
+    <h3 class="my-3 text-2xl font-medium text-center text-gray-600"><%= t(".title") %></h3>
+    <%= image_tag "thinking_cat.png", size: "155x100", class: "mx-auto" %>
+    <div class="text-sm text-center text-gray-500">
+      <p>目標を達成するために必要なタスクを</p>
+      <p>まずは1つ考えてみましょう!</p>
+    </div>
+
+    <%= form_with(model: @task, url: goal_step_path(:add_task), method: :put, data: { turbo: false }) do |f| %>
+      <div class="p-4">
+        <div class="mb-5">
+          <div class="text-center">
+            <%= f.label :content, t(".content"), class: "text-md font-semibold text-gray-600" %>
+          </div>
+          <%= f.text_field :content, placeholder: "タスクを入力してください", class: "w-full border border-gray-300 text-gray-600 rounded mt-2 py-2 px-3" %>
+          <p class="text-xs text-gray-400 mt-1">例: 「Railsチュートリアルの概要を読む」「腹筋とスクワットをする」</p>
+          <%= error_message_for(f.object, :content) %>
+        </div>
+
+        <div class="mb-5">
+          <div class="text-center">
+            <%= f.label :due, t(".due"), class: "text-md font-semibold mt-2 text-gray-600" %>
+          </div>
+          <%= f.date_field :due, class:"w-full border border-gray-300 rounded mt-2 py-2 px-3 text-gray-600",
+            id: "task_due", value: Date.today, min: Date.today, max: Date.today + 7.days %>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <%= link_to t("defaults.cancel"), goals_path, class: "btn btn-outline-secondary px-3" %>
+        <%= f.submit t(".submit"), class: 'btn btn-secondary py-2 px-8 ml-2' %>
+      </div>
+    <% end %>
+
+    <div class="flex justify-between">
+        <%= link_to "Back", previous_wizard_path, class:"link link-hover text-gray-400" %>
+        <%= link_to "Skip", next_wizard_path, class:"link link-hover text-gray-400" %>
+    </div>
+  </div>
+</div>

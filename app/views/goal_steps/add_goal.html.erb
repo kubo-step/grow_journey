@@ -1,0 +1,39 @@
+<% content_for(:title, t('.title')) %>
+<div class="card flex-shrink-0 w-full max-w-lg shadow-2xl mx-auto mt-12 mb-12">
+  <div class="card-body">
+    <h3 class="my-3 text-2xl font-medium text-center text-gray-600"><%= t(".week_goals") %></h3>
+    <%= image_tag "point_cat.png", size:"200x100", class: "mx-auto" %>
+    <div class="text-sm text-center text-gray-500">
+      <p>この1週間で、どんなことを達成したいですか？</p>
+      <p>最初に達成したい目標を入れてみましょう！</p>
+    </div>
+    <%= form_with(model: @goal, url: goal_step_path(:add_goal), method: :put, data: { turbo: false }) do |f| %>
+      <div class="p-4">
+        <div class="mb-5">
+          <div class="text-center">
+            <%= f.label :content, t(".content"), class: "text-md font-semibold" %>
+          </div>
+          <%= f.text_field :content, placeholder: "目標を入力してください", class: "w-full border border-gray-300 text-gray-600 rounded mt-2 py-2 px-3" %>
+          <p class="text-xs text-gray-400 mt-1">例: 「Railsチュートリアル第1章をする」「毎日5分体を動かす」</p>
+          <%= error_message_for(f.object, :content) %>
+        </div>
+
+        <div class="mb-5">
+          <div class="text-center">
+            <%= f.label :category_id, t("goal_steps.add_goal.category"), class:"text-md font-semibold"%>
+          </div>
+          <%= f.collection_select(:category_id, Category.all, :id, :name, { include_blank: "カテゴリーを選択してください" }, class: "w-full border border-gray-300 rounded mt-2 py-2 px-3 text-gray-600") %>
+          <%= error_message_for(f.object, :category_id) %>
+        </div>
+        <div class="flex justify-end mb-5">
+            <%= f.label :status,"公開する", class: "text-sm text-gray-500" %>
+            <%= f.check_box :status %>
+        </div>
+
+      <div class="text-center">
+        <%= link_to t("defaults.cancel"), goals_path, class: "btn btn-outline-secondary px-3" %>
+        <%= f.submit t(".submit"), class: 'btn btn-secondary py-2 px-8 ml-2' %>
+      </div>
+    <% end %>
+  </div>
+</div>

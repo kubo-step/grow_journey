@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       get :completed_goals
     end
   end
+
+  resources :goal_steps, only: [:show, :update]
   resources :categories, only: %i[new create]
   resource :profiles, only: %i[show edit update]
 

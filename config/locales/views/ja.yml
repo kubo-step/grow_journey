@@ -4,6 +4,7 @@ ja:
     register: '登録'
     logout: 'ログアウト'
     to_login_page: 'ログインページへ'
+    cancel: キャンセル
     message:
       login: 'ログインしました'
       require_login: 'ログインしてください'
@@ -23,13 +24,26 @@ ja:
       no_result: '0件'
       title: '一覧'
     new:
-      content: '目標'
-      title: '目標作成'
     create:
       success: '登録しました'
       fail: '登録に失敗しました'
     edit:
       title: '目標編集'
+  goal_steps:
+    add_goal:
+      week_goals: 今週の目標を決めよう!
+      content: 目標
+      category: カテゴリー
+      submit: 次へ
+    add_task:
+     title: 目標に対するタスクを設定しよう！
+     content: やること
+     due: タスクをやる日
+     submit: 登録
+    finished:
+      title: 目標・タスク設定完了
+      complete: 目標設定お疲れ様でした！
+      link: 一覧に戻る
   profiles:
     show:
       title: 'プロフィール'

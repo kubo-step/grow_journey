@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_06_170438) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_18_142232) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_170438) do
 
   create_table "goals", force: :cascade do |t|
     t.string "content", null: false
-    t.boolean "is_goal", default: false
     t.datetime "deadline", null: false
     t.boolean "status", default: false
     t.boolean "checked", default: false
@@ -42,6 +41,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_170438) do
     t.bigint "category_id"
     t.index ["category_id"], name: "index_goals_on_category_id"
     t.index ["user_id"], name: "index_goals_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "content", null: false
+    t.datetime "due", null: false
+    t.boolean "checked", default: false
+    t.datetime "achieved_at"
+    t.bigint "goal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_tasks_on_goal_id"
   end
 
   create_table "user_flower_images", force: :cascade do |t|
@@ -71,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_06_170438) do
 
   add_foreign_key "goals", "categories"
   add_foreign_key "goals", "users"
+  add_foreign_key "tasks", "goals"
   add_foreign_key "user_flower_images", "flower_images"
   add_foreign_key "user_flower_images", "users"
 end
