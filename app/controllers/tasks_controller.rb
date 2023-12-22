@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_image, only: %i[completed_tasks]
   before_action :find_goal, only: %i[new create]
+  before_action :find_task, only: %i[destroy toggle]
 
   def new
     @task = @goal.tasks.build
@@ -20,8 +21,13 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task.destroy!
+    @goal = @task.goal
+    flash.now[:success] = t("defaults.message.deleted")
+  end
+
   def toggle
-    @task = current_user.tasks.find(params[:id])
     @task.toggle_checked!(current_user, session[:selected_image])
 
     if @task.goal.checked
@@ -39,6 +45,10 @@ class TasksController < ApplicationController
 
   def find_goal
     @goal = Goal.find(params[:goal_id])
+  end
+
+  def find_task
+    @task = current_user.tasks.find(params[:id])
   end
 
   def set_image

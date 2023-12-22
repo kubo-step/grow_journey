@@ -1,0 +1,3 @@
+<%= turbo_stream.remove @task %>
+<%= turbo_stream.replace "progress_#{@goal.id}", partial: "goals/progress", locals: { goal: @goal } %>
+<%= turbo_stream_flash %>
