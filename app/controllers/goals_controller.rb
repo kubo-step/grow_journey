@@ -5,7 +5,7 @@ class GoalsController < ApplicationController
   before_action :set_image, only: %i[index completed_goals]
 
   def index
-    @goals_count = @goals.where(checked: true).count
+    @goals_count = @tasks.where(checked: true).count
     @goals_count_modal = @goals_count + 1
   end
 
@@ -64,6 +64,8 @@ class GoalsController < ApplicationController
 
   def load_goals
     @goals = current_user.goals.includes(:category).order(created_at: :desc)
+    @tasks = current_user.tasks.includes(:goal).order(due: :asc)
+    @task = Task.new
   end
 
   def set_image
