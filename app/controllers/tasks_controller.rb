@@ -3,8 +3,6 @@ class TasksController < ApplicationController
   before_action :set_image, only: %i[completed_tasks]
   before_action :find_goal, only: %i[new create]
 
-  def index; end
-
   def new
     @task = @goal.tasks.build
   end
@@ -13,6 +11,7 @@ class TasksController < ApplicationController
     @task = @goal.tasks.build(task_params)
     respond_to do |format|
       if @task.save
+        @goal = @task.goal
         format.html { redirect_to goals_path, notice: t(".success") }
         format.turbo_stream { flash.now[:success] = t(".success") }
       else
