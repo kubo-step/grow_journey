@@ -1,0 +1,5 @@
+<%= turbo_stream.append "tasks-for-goal-#{@task.goal_id}", partial: "tasks/task", locals: { task: @task } %>
+<%= turbo_stream.update "new_task_#{@task.goal.id}", "" %>
+<% goal = Goal.find(@task.goal_id) %>
+<%= turbo_stream.replace("progress_#{goal.id}", partial: "goals/progress", locals: { goal: goal }) %>
+<%= turbo_stream_flash %>

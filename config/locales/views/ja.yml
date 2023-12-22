@@ -5,6 +5,7 @@ ja:
     logout: 'ログアウト'
     to_login_page: 'ログインページへ'
     cancel: キャンセル
+    submit: 保存
     message:
       login: 'ログインしました'
       require_login: 'ログインしてください'
@@ -44,6 +45,13 @@ ja:
       title: 目標・タスク設定完了
       complete: 目標設定お疲れ様でした！
       link: 一覧に戻る
+  tasks:
+    new:
+      content: タスク
+      due: 完了予定日
+    create:
+      success: '登録しました'
+      fail: '登録に失敗しました'
   profiles:
     show:
       title: 'プロフィール'

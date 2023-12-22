@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get "privacy_policy", to: "top_pages#privacy_policy"
   get "terms", to: "top_pages#terms"
 
-  get "flowers", to: "flower#index"
   resources :goals do
     member do
       patch :toggle
@@ -20,11 +19,21 @@ Rails.application.routes.draw do
     collection do
       get :completed_goals
     end
+    resources :tasks, shallow: true
+  end
+
+  resources :tasks, only: [] do
+    member do
+      patch :toggle
+    end
   end
 
   resources :goal_steps, only: [:show, :update]
   resources :categories, only: %i[new create]
   resource :profiles, only: %i[show edit update]
 
+  get "flowers", to: "flower#index"
+
+  # 開発環境限定のルーティング
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
