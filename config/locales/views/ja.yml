@@ -58,6 +58,10 @@ ja:
     edit:
       content: タスク
       due: 完了予定日
+    task:
+      copy: コピー
+      edit: 編集
+      delete: 削除
   profiles:
     show:
       title: 'プロフィール'
