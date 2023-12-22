@@ -1,0 +1,38 @@
+<%= turbo_frame_tag task do %>
+  <div class="card max-w-full mb-3 p-4 rounded-lg border border-gray-300">
+    <div id="task-id-<%= task.id %>">
+      <div class="flex items-center justify-between">
+        <div class="flex-shrink-0">
+        <%= form_with model: task, url: toggle_task_path(task, format: :json), data: { task_id: task.id } do |f| %>
+          <div class="flex items-center space-x-2">
+            <%= f.check_box :checked, class: 'text-primary', id: "toggle-button-#{task.id}" %>
+          </div>
+        <% end %>
+        </div>
+
+        <div class="flex-1 ml-4">
+          <p class="text-md font-semibold"><%= task.content %></p>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center md:items-start">
+          <p class="text-xs text-gray-600"><%= t("tasks.new.due")%></p>
+          <div class="flex items-center">
+            <div class="text-gray-600 mr-2">
+              <i class="fa-regular fa-bell"></i>
+            </div>
+            <p class="text-sm text-gray-600"><%= l task.due, format: :short %></p>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center sm:mb-2 ml-2 md:space-x-2 text-primary">
+          <%= link_to edit_task_path(task), data: { turbo_frame: "task_#{task.id}" } do %>
+            <i class="fa-solid fa-pen"></i>
+          <% end %>
+          <%= button_to task, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
