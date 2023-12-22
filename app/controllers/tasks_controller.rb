@@ -23,8 +23,8 @@ class TasksController < ApplicationController
   def toggle
     @task = current_user.tasks.find(params[:id])
     @task.toggle_checked!(current_user, session[:selected_image])
-    if @task.goal.tasks.all? { |task| task.checked }
-      @task.goal.update(checked: true)
+
+    if @task.goal.checked
       render turbo_stream: turbo_stream.remove(@task.goal)
     else
       render turbo_stream: turbo_stream.remove(@task)
