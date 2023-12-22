@@ -30,6 +30,9 @@ ja:
       fail: '登録に失敗しました'
     edit:
       title: '目標編集'
+      content: 目標
+      category: カテゴリー
+      deadline: 達成予定日
   goal_steps:
     add_goal:
       week_goals: 今週の目標を決めよう!
@@ -37,10 +40,10 @@ ja:
       category: カテゴリー
       submit: 次へ
     add_task:
-     title: 目標に対するタスクを設定しよう！
-     content: やること
-     due: タスクをやる日
-     submit: 登録
+      title: 目標に対するタスクを設定しよう！
+      content: やること
+      due: タスクをやる日
+      submit: 登録
     finished:
       title: 目標・タスク設定完了
       complete: 目標設定お疲れ様でした！

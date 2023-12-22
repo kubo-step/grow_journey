@@ -41,7 +41,7 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    @goal.destroy
+    @goal.destroy!
     flash.now[:success] = t("defaults.message.deleted")
   end
 
