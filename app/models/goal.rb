@@ -10,4 +10,17 @@ class Goal < ApplicationRecord
   def check_completion
     update(checked: tasks.where.not(checked: true).empty?)
   end
+
+  def progress
+    total_tasks.zero? ? 0 : (completed_tasks.to_f / total_tasks * 100).round
+  end
+
+  def total_tasks
+    self.tasks.count
+  end
+
+  # ゴールに紐づく完了したタスクの数を返す
+  def completed_tasks
+    self.tasks.where(checked: true).count
+  end
 end

@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "progress_#{goal.id}" do %>
+  <progress class="progress progress-accent-400 sm:w-auto md:w-56" value="<%= goal.progress %>" max="100"></progress>
+  <div class="flex flex-row">
+      <p class="text-sm text-gray-500"><%= goal.progress %>%
+      <% if goal.progress > 0 %>
+        達成中！
+      <% end %>
+      </p>
+    <div class="text-right">
+    <p class="text-sm text-gray-500"><%= goal.completed_tasks %>/<%= goal.total_tasks %></p>
+    </div>
+  </div>
+<% end %>
