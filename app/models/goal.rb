@@ -6,7 +6,8 @@ class Goal < ApplicationRecord
   validates :content, presence: true, length: { maximum: 255 }
   validates :category_id, presence: { message: 'を選択してください' }
 
+  # ゴールに紐づく全タスクが完了していればゴールを完了とし、一つでも未完了があれば未完了とする。
   def check_completion
-    update(checked: tasks.all? { |task| task.checked })
+    update(checked: tasks.where.not(checked: true).empty?)
   end
 end
