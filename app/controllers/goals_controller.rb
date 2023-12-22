@@ -60,7 +60,6 @@ class GoalsController < ApplicationController
 
   def find_goal
     @goal = current_user.goals.find(params[:id])
-    @task = current_user.tasks.find(params[:id])
   end
 
   def load_goals
