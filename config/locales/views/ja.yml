@@ -52,6 +52,9 @@ ja:
     create:
       success: '登録しました'
       fail: '登録に失敗しました'
+    edit:
+      content: タスク
+      due: 完了予定日
   profiles:
     show:
       title: 'プロフィール'

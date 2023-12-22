@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_image, only: %i[completed_tasks]
   before_action :find_goal, only: %i[new create]
-  before_action :find_task, only: %i[destroy toggle]
+  before_action :find_task, only: %i[edit update destroy toggle]
 
   def new
     @task = @goal.tasks.build
@@ -17,6 +17,19 @@ class TasksController < ApplicationController
         format.turbo_stream { flash.now[:success] = t(".success") }
       else
         format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit; end
+
+  def update
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html { redirect_to goals_path, notice: t(".success") }
+        format.turbo_stream { flash.now[:success] = t("defaults.message.updated") }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end

@@ -1,0 +1,26 @@
+<%= turbo_frame_tag @task do %>
+  <div class="card max-w-full mb-3 p-4 rounded-lg border border-gray-300">
+      <%= form_with model: @task, local: true  do |f| %>
+        <div class="flex flex-col md:flex-row justify-between">
+          <!-- タスクのコンテンツ -->
+          <div class="flex-1 mb-2 md:mb-0 md:mr-2">
+            <%= f.label :content, t(".content"), class: "block text-sm font-medium text-gray-700" %>
+            <%= f.text_field :content, id: "task_content", class: "form-input w-full border rounded-md", placeholder: "タスク" %>
+          </div>
+
+          <!-- 期限 -->
+          <div class="mb-2 md:mb-0 md:mr-2">
+            <%= f.label :due, t(".due"), class: "block text-sm font-medium text-gray-700" %>
+            <%= f.date_field :due, id: "task_due", class: "form-input w-full border rounded-md" %>
+          </div>
+
+          <%= f.hidden_field :goal_id, value: @task.goal_id %>
+          <!-- ボタン -->
+          <div class="flex justify-end md:flex-1">
+            <%= link_to t("defaults.cancel"), goals_path, class: "btn mr-2 sm:btn-xs md:btn" %>
+            <%= f.submit t("defaults.submit"), class: "btn btn-secondary sm:btn-xs md:btn-md" %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+<% end %>
