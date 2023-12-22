@@ -1,27 +1,75 @@
 <%= turbo_frame_tag goal do %>
-  <div class="card max-w-lg mb-3 p-4 rounded-lg border border-gray-300">
-    <div id="goal-id-<%= goal.id %>">
-      <div class="flex items-center justify-between">
-        <div class="flex-shrink-0">
-        <%= form_with model: goal, url: toggle_goal_path(goal, format: :json), data: { goal_id: goal.id } do |f| %>
-          <div class="flex items-center space-x-2">
-            <%= f.check_box :checked, class: 'text-primary', id: "toggle-button-#{goal.id}" %>
+  <div id="goal-id-<%= goal.id %>">
+    <div class="collapse collapse-arrow my-3 border border-gray-300">
+      <input type="checkbox" name="my-accordion-<%= goal.id %>" class="peer p-3" />
+      <!-- アコーディオン用のラジオボタン -->
+      <div class="collapse-title text-xl font-medium">
+        <div class="text-xl font-medium">
+          <div class="flex flex-col md:flex-row justify-between mx-2">
+            <div class="flex items-center mb-2 md:mb-0">
+              <%=image_tag category_icon(goal.category.name), class: "mr-2", size: "20x20"%>
+              <p class="ml-4 text-lg font-semibold sm:max-w-xs md:max-w-md"><%= goal.content %></p>
+            </div>
+
+            <div class="flex justify-end">
+              <div class="flex-1 md:flex-none md:ml-4">
+                <div class="flex flex-col mr-4">
+                  <div class="text-right">
+                    <p class="text-xs text-gray-500">達成予定日：<%= l goal.deadline, format: :short %></p>
+                  </div>
+                  <%= turbo_frame_tag "progress_#{goal.id}" do %>
+                    <progress class="progress progress-accent-400 sm:w-auto md:w-56" value="<%= goal.progress %>" max="100"></progress>
+                    <div class="flex flex-row">
+                        <p class="text-sm text-gray-500"><%= goal.progress %>%
+                        <% if goal.progress > 0 %>
+                          達成中！
+                        <% end %>
+                        </p>
+                      <div class="text-right">
+                      <p class="text-sm text-gray-500"><%= goal.completed_tasks %>/<%= goal.total_tasks %></p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
-        <% end %>
         </div>
-        <div class="flex-grow ml-4">
-          <%= link_to goal_path(goal) do %>
-            <p class="text-lg font-semibold"><%= goal.content %></p>
-          <% end %>
-          <p class="text-xs text-gray-500"><%= l goal.deadline, format: :short %></p>
+      </div>
+      <!-- コンテンツ領域 -->
+      <div class="collapse-content peer-checked:block hidden">
+        <div class="flex-1 md:flex-none flex justify-end mx-2 mb-1">
+          <div class="dropdown dropdown-hover dropdown-left dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-sm">
+              <i class="fa fa-ellipsis fa-xl"></i>
+            </label>
+              <ul tabindex="0" class="text-gray-700 dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                  <%= button_to goal, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
+                    <i class="fa-solid fa-trash mr-3"></i>目標の削除
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to edit_goal_path(goal), data: { turbo_frame: goal } do %>
+                    <i class="fa-solid fa-pen mr-1"></i>目標の編集
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_goal_task_path(goal_id: goal.id), data: { turbo_frame: "new_task_#{goal.id}" }, class: "mb-1" do %>
+                    <i class="fa-solid fa-plus mr-1"></i>タスク追加
+                  <% end %>
+                </li>
+              </ul>
+          </div>
         </div>
-        <div class="flex items-center space-x-2">
-          <div class="bg-primary bg-opacity-50 text-xs rounded-full px-2 py-1 text-white"><%= goal.category.name %></div>
-          <%= link_to edit_goal_path(goal), class: "text-primary hover:underline" do %>
-            <%= icon 'fa', 'pen' %>
-          <% end %>
-          <%= button_to goal, method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } }, class: "text-primary hover:underline" do %>
-            <%= icon 'fas', 'trash' %>
+        <div class="my-2">
+          <%= turbo_frame_tag "new_task_#{goal.id}" %>
+        </div>
+        <div id="tasks-for-goal-<%= goal.id %>">
+          <% goal.tasks.each do |task| %>
+            <%= turbo_frame_tag dom_id(task) do %>
+              <%= render partial: "tasks/task", locals: { task: task } %>
+            <% end %>
           <% end %>
         </div>
       </div>
