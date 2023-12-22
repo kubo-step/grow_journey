@@ -65,7 +65,7 @@
         <div class="my-2">
           <%= turbo_frame_tag "new_task_#{goal.id}" %>
         </div>
-        <div id="tasks-for-goal-<%= goal.id %>">
+        <div id="tasks-for-goal-<%= goal.id %>" class="overflow-y-auto max-h-96">
           <% goal.tasks.each do |task| %>
             <%= turbo_frame_tag dom_id(task) do %>
               <%= render partial: "tasks/task", locals: { task: task } %>
