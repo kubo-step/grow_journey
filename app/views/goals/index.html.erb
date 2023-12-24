@@ -1,27 +1,47 @@
 <% content_for(:title, t('.title')) %>
 <%= render "modal" %>
-<div class="container mx-auto py-12 text-center">
+<div class="container mx-auto py-8 text-center">
   <div class="mb-8">
     <h2 class="text-ms font-bold mb-2 text-secondary">目標達成で花が咲きました！</h2>
     <p class="text-xl border-secondary font-bold">あなたの花が咲いた数：<span class="text-5xl font-semibold"><%= @goals_count %></span>本</p>
   </div>
 
   <div class="container mx-auto text-center">
-    <%= link_to '新しい目標を追加', goal_step_path(:add_goal), class: 'btn btn-secondary mt-4 text-lg w-full max-w-lg' %>
+    <%= link_to '新しい目標を追加', goal_step_path(:add_goal), class: 'btn btn-secondary text-md w-full max-w-lg' %>
   </div>
 </div>
 <div class="flex flex-wrap justify-center">
   <div class="card w-full max-w-4xl mx-4 mb-8 shadow-2xl">
-    <div class="card-body">
-        <div class="font-bold text-center text-xl">目標</div>
-        <% if @goals.present? %>
-          <div id="goals">
-            <%= turbo_frame_tag "goals" do %>
-              <%= render @goals.select{ |g| !g.checked? } %>
-            <% end %>
-          </div>
-        <% end %>
-    </div>
+    <div data-controller="tabs" data-tabs-active-tab-class="border tabs tabs-lifted">
+      <div class="flex justify-end">
+        <ul class="list-reset flex border-b">
+          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+            <a class="tab font-semibold">目標一覧</a>
+          </li>
+          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+            <a class="tab font-semibold">本日のタスク</a>
+          </li>
+        </ul>
+      </div>
+        <div class="hidden px-4 border-l border-b border-r" data-tabs-target="panel">
+              <div class="card-body">
+                <div class="font-bold text-center text-2xl">目標</div>
+                <% if @goals.present? %>
+                  <div id="goals">
+                    <%= turbo_frame_tag "goals" do %>
+                      <%= render @goals.select{ |g| !g.checked? } %>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+        </div>
+
+        <div class="hidden px-4 border-l border-b border-r" data-tabs-target="panel">
+          <%= turbo_frame_tag "tab2_content" do %>
+            <%= render "tasks/tab2" %>
+          <% end %>
+        </div>
+      </div>
   </div>
 </div>
 

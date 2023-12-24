@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   before_action :set_image, only: %i[completed_tasks]
   before_action :find_goal, only: %i[new create]
   before_action :find_task, only: %i[edit update destroy toggle copy]
+  before_action :tasks_all, only: %i[create update copy]
 
   def new
     @task = @goal.tasks.build
@@ -10,6 +11,7 @@ class TasksController < ApplicationController
 
   def create
     @task = @goal.tasks.build(task_params)
+    @tab = "tab1"
     respond_to do |format|
       if @task.save
         @goal = @task.goal
@@ -52,6 +54,7 @@ class TasksController < ApplicationController
 
   def copy
     @copy_task = @task.dup
+    @tab = "tab1"
     respond_to do |format|
       if @copy_task.save
         @goal = @copy_task.goal
@@ -75,6 +78,10 @@ class TasksController < ApplicationController
 
   def find_task
     @task = current_user.tasks.find(params[:id])
+  end
+
+  def tasks_all
+    @tasks = current_user.tasks.includes(:goal).order(due: :asc)
   end
 
   def set_image

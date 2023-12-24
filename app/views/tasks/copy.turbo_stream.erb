@@ -1,3 +1,4 @@
-<%= turbo_stream.append "tasks-for-goal-#{@copy_task.goal_id}", partial: "tasks/task", locals: { task: @copy_task } %>
+<%= turbo_stream.append "tasks-for-goal-#{@copy_task.goal_id}", partial: "tasks/task", locals: { task: @copy_task, tab: "tab1" } %>
 <%= turbo_stream.replace "progress_#{@goal.id}", partial: "goals/progress", locals: { goal: @goal } %>
+<%= turbo_stream.replace "tab2_content", partial: "tasks/tab2", locals: { task: @tasks, tab: "tab2" } %>
 <%= turbo_stream_flash %>

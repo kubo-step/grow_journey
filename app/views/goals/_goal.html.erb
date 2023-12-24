@@ -73,8 +73,8 @@
         <div id="tasks-for-goal-<%= goal.id %>" class="overflow-y-auto max-h-96">
           <% goal.tasks.each do |task| %>
             <% if task.checked == false %>
-              <%= turbo_frame_tag dom_id(task) do %>
-                <%= render partial: "tasks/task", locals: { task: task } %>
+              <%= turbo_frame_tag "tab1_#{dom_id(task)}" do %>
+                <%= render partial: "tasks/task", locals: { task: task, tab: 'tab1' } %>
               <% end %>
             <% end %>
           <% end %>
