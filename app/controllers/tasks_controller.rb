@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_image, only: %i[completed_tasks]
   before_action :find_goal, only: %i[new create]
-  before_action :find_task, only: %i[edit update destroy toggle]
+  before_action :find_task, only: %i[edit update destroy toggle copy]
 
   def new
     @task = @goal.tasks.build
@@ -47,6 +47,19 @@ class TasksController < ApplicationController
       render turbo_stream: turbo_stream.remove(@task.goal)
     else
       render turbo_stream: turbo_stream.remove(@task)
+    end
+  end
+
+  def copy
+    @copy_task = @task.dup
+    respond_to do |format|
+      if @copy_task.save
+        @goal = @copy_task.goal
+        format.html { redirect_to goals_path, notice: t(".success") }
+        format.turbo_stream { flash.now[:success] = t("defaults.message.updated") }
+      else
+        format.html { redirect_to goals_path, status: :unprocessable_entity }
+      end
     end
   end
 

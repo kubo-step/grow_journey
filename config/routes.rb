@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :tasks, only: [] do
     member do
       patch :toggle
+      post :copy
     end
   end
 
