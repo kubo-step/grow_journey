@@ -1,2 +1,3 @@
-<%= turbo_stream.replace @task%>
-<%= turbo_stream_flash%>
+<%= turbo_stream.replace "tab1_#{dom_id(@task)}", partial: "tasks/task", locals: { task: @task, tab: "tab1"} %>
+<%= turbo_stream.replace "tab2_content", partial: "tasks/tab2", locals: { task: @tasks, tab: "tab2" } %>
+<%= turbo_stream_flash %>

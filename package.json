@@ -6,6 +6,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "daisyui": "^3.7.4",
-    "modern-css-reset": "^1.4.0"
+    "modern-css-reset": "^1.4.0",
+    "tailwindcss-stimulus-components": "^4.0.4"
   }
 }
