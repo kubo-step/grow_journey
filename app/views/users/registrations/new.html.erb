@@ -7,11 +7,11 @@
 
         <div class="form-control">
           <%= f.label :name %>
-          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input input-accent w-full mb-3 mt-1'%>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'input input-primary w-full mb-3 mt-1'%>
         </div>
         <div class="form-control">
           <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input input-accent w-full mb-3 mt-1' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input input-primary w-full mb-3 mt-1' %>
         </div>
 
         <div class="form-control">
@@ -19,12 +19,12 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %>
-          <%= f.password_field :password, autocomplete: "new-password", class: 'input input-accent w-full mb-3 mt-1' %>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'input input-primary w-full mb-3 mt-1' %>
         </div>
 
         <div class="form-control">
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input input-accent w-full mb-3 mt-1' %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input input-primary w-full mb-3 mt-1' %>
         </div>
 
         <div class="text-center mt-10">

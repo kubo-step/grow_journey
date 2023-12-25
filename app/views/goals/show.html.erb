@@ -3,7 +3,7 @@
     <div class="border rounded-lg mb-3 p-4">
       <!-- 目標の詳細情報を表示 -->
       <p class="card-title"><%= @goal.content %></p>
-      <div class="w-14 bg-primary bg-opacity-50 text-xs rounded-full px-2 py-1 text-white">
+      <div class="w-14 bg-accent bg-opacity-50 text-xs rounded-full px-2 py-1 text-white">
         <%= @goal.category.name %>
       </div>
       <p>登録日: <%= l @goal.created_at, format: :long %></p>

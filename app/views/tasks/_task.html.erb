@@ -5,7 +5,7 @@
         <div class="flex-shrink-0">
         <%= form_with model: task, url: toggle_task_path(task, format: :json), data: { task_id: task.id } do |f| %>
           <div class="flex items-center space-x-2">
-            <%= f.check_box :checked, class: 'text-primary', id: "toggle-button-#{task.id}" %>
+            <%= f.check_box :checked, class: 'text-accent', id: "toggle-button-#{task.id}" %>
           </div>
         <% end %>
         </div>
@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row items-center sm:mb-2 ml-2 md:space-x-3 text-primary">
+        <div class="flex flex-col md:flex-row items-center sm:mb-2 ml-2 md:space-x-3 text-accent">
           <% if tab == "tab1" %>
             <div class="tooltip tooltip-left" data-tip="<%= t(".copy") %>">
               <%= button_to copy_task_path(task, tab: "tab1"), method: :post, data: { turbo_frame: false} do %>

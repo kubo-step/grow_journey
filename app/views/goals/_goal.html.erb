@@ -23,7 +23,7 @@
                     <p class="text-xs text-gray-500">達成予定日：<%= l goal.deadline, format: :short %></p>
                   </div>
                   <%= turbo_frame_tag "progress_#{goal.id}" do %>
-                    <progress class="progress progress-accent-400 sm:w-auto md:w-56" value="<%= goal.progress %>" max="100"></progress>
+                    <progress class="progress progress-primary-400 sm:w-auto md:w-56" value="<%= goal.progress %>" max="100"></progress>
                     <div class="flex flex-row">
                         <p class="text-sm text-gray-500"><%= goal.progress %>%
                         <% if goal.progress > 0 %>
