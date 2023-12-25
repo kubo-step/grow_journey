@@ -46,10 +46,10 @@ function setupEventListeners() {
 }
 
 function sendCheckboxState(toggleButton) {
-  const goalId = toggleButton.id.split('-')[2]; // goal.id の抽出
+  const taskId = toggleButton.id.split('-')[2]; // task.id の抽出
   const checked = toggleButton.checked;
 
-  return fetch(`/goals/${goalId}/toggle`, {
+  return fetch(`/tasks/${taskId}/toggle`, {
     method: 'PATCH',
     headers: {
       'X-CSRF-Token': getCSRFToken() // CSRF トークンの取得
