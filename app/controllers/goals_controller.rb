@@ -10,21 +10,6 @@ class GoalsController < ApplicationController
     @goals_count_modal = @goals_count + 1
   end
 
-  def new
-    @goal = Goal.new
-  end
-
-  def create
-    @goal = current_user.goals.build(goal_params)
-    respond_to do |format|
-      if @goal.save
-        format.html { redirect_to goals_path, notice: t(".success") }
-        format.turbo_stream { flash.now[:success] = t(".success") }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
-  end
 
   def edit; end
 
@@ -52,7 +37,7 @@ class GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:content, :is_goal, :category_id, :deadline, :status, :checked, :achieved_at, :user_id)
+    params.require(:goal).permit(:content, :category_id, :deadline, :status, :checked, :achieved_at, :user_id)
   end
 
   def find_goal

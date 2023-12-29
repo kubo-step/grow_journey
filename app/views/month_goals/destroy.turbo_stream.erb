@@ -1,0 +1,6 @@
+<%= turbo_stream.replace "month_#{dom_id(@month_goal)}" do %>
+  <p class="mb-3">今月の目標を設定しよう！</p>
+  <%= link_to "目標を設定する", new_month_goal_path, class: "btn btn-secondary rounded-lg shadow" %>
+<% end %>
+
+<%= turbo_stream_flash %>

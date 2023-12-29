@@ -24,7 +24,6 @@ ja:
     index:
       no_result: '0件'
       title: '一覧'
-    new:
     create:
       success: '登録しました'
       fail: '登録に失敗しました'
@@ -33,6 +32,10 @@ ja:
       content: 目標
       category: カテゴリー
       deadline: 達成予定日
+  month_goals:
+    new:
+      title: 今月の目標
+      month_goals: 今月の目標
   goal_steps:
     add_goal:
       week_goals: 今週の目標を決めよう!

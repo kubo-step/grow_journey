@@ -1,0 +1,27 @@
+<% content_for(:title, t('.title')) %>
+<div class="card flex-shrink-0 w-full max-w-lg shadow-2xl mx-auto mt-12 mb-12">
+  <div class="card-body">
+    <h3 class="my-3 text-2xl font-medium text-center text-gray-600"><%= t(".month_goals") %></h3>
+    <%= image_tag "cat/car_cat.png", size:"200x100", class: "mx-auto" %>
+    <div class="text-sm text-center text-gray-500">
+      <p>今月は何を達成したいですか？</p>
+      <p>あなたの夢や目標に向かって一歩ずつ進んでいきましょう！</p>
+    </div>
+    <%= form_with(model: @month_goal, url: month_goals_path, local: true) do |f| %>
+      <div class="p-4">
+        <div class="mb-5">
+          <div class="text-center">
+            <%= f.label :content, Goal.human_attribute_name(:content), class: "text-md font-semibold" %>
+          </div>
+          <%= f.text_field :content, placeholder: "目標を入力してください", class: "w-full border border-gray-300 text-gray-600 rounded mt-2 py-2 px-3" %>
+          <p class="text-xs text-gray-400 mt-1">例: 「Railsチュートリアルをやる」「体重を1kg落とす」</p>
+          <%= error_message_for(f.object, :content) %>
+        </div>
+
+      <div class="text-center">
+        <%= link_to t("defaults.cancel"), goals_path, class: "btn btn-outline-secondary px-3" %>
+        <%= f.submit t("defaults.submit"), class: 'btn btn-secondary py-2 px-8 ml-2' %>
+      </div>
+    <% end %>
+  </div>
+</div>

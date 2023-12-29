@@ -1,4 +1,0 @@
-<%= turbo_stream.prepend "goals", @goal if @goal.is_goal? %>
-<%= turbo_stream.prepend "tasks", @goal unless @goal.is_goal? %>
-<%= turbo_stream.update Goal.new, "" %>
-<%= turbo_stream_flash %>

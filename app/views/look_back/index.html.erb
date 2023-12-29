@@ -20,8 +20,24 @@
         <!-- 今月の目標 -->
         <div class="p-4 border border-gray-200 rounded-lg shadow text-center">
           <h3 class="text-xl font-semibold mb-3 underline decoration-4 decoration-secondary">今月の目標</h3>
-          <p class="mb-3">今月の目標を設定しよう！</p>
-          <%= link_to "目標を設定する", new_goal_path, class: "btn btn-secondary rounded-lg" %>
+          <% if @month_goal.present? %>
+            <%= turbo_frame_tag "month_#{dom_id(@month_goal)}" do %>
+              <div class="mt-6 font-semibold md:text-lg">
+                <%= @month_goal.content %>
+              </div>
+              <div class="flex justify-end space-x-3">
+                <%= link_to edit_month_goal_path(@month_goal) do %>
+                  <i class="fa-solid fa-pen mr-1"></i>
+                <% end %>
+                <%= button_to month_goal_path(@month_goal), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
+                  <i class="fa-solid fa-trash mr-3"></i>
+                <% end %>
+              </div>
+            <% end %>
+          <%else%>
+            <p class="mb-3">今月の目標を設定しよう！</p>
+            <%= link_to "目標を設定する", new_month_goal_path, class: "btn btn-secondary rounded-lg shadow" %>
+          <%end%>
         </div>
 
         <!-- 今月達成した目標 -->
