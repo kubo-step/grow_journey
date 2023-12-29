@@ -10,7 +10,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- カテゴリ内訳グラフ -->
-        <div class="row-span-2 mb-3 p-4 border border-gray-200 rounded-lg">
+        <div class="row-span-2 mb-3 p-4 border border-gray-200 rounded-lg shadow">
           <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">カテゴリ内訳</h3>
           <div class="items-center">
             <%= pie_chart @chart, library: { title: { text: "今月の達成タスク数<br> #{@chart_count}件" } } %>
@@ -18,14 +18,14 @@
         </div>
 
         <!-- 今月の目標 -->
-        <div class="mb-3 p-4 border border-gray-200 rounded-lg text-center">
+        <div class="p-4 border border-gray-200 rounded-lg shadow text-center">
           <h3 class="text-xl font-semibold mb-3 underline decoration-4 decoration-secondary">今月の目標</h3>
           <p class="mb-3">今月の目標を設定しよう！</p>
           <%= link_to "目標を設定する", new_goal_path, class: "btn btn-secondary rounded-lg" %>
         </div>
 
         <!-- 今月達成した目標 -->
-        <div class="mb-3 p-4 border border-gray-200 rounded-lg">
+        <div class="mb-3 p-4 border border-gray-200 rounded-lg shadow">
           <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">今月達成した目標</h3>
           <% if @achieved_goals.present? %>
             <ul class="list-disc pl-5 overflow-y-auto max-h-56">
@@ -39,18 +39,18 @@
         </div>
       </div>
 
-      <div class="mb-3 p-4 border border-gray-200 rounded-l">
-        <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">週間目標の進行状況</h3>
+      <div class="mb-3 p-4 border border-gray-200 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-5 text-center underline decoration-4 decoration-secondary">週間目標の進行状況</h3>
         <div class="overflow-y-auto max-h-56 flex justify-center">
-          <div class="max-w-xl w-full">
+          <div>
             <% @progress_goals.each do |goal| %>
-              <div class="grid grid-cols-5 items-center mb-2 gap-4">
-                <div class="col-span-3">
+              <div class="grid grid-cols-12 items-center mb-2 gap-4">
+                <div class="col-span-6 md:col-span-8">
                   <ul class="list-disc pl-5">
                     <li><%= goal.content %></li>
                   </ul>
                 </div>
-                <div class="col-span-1">
+                <div class="col-span-3">
                   <progress class="progress progress-primary w-full" value="<%= goal.progress %>" max="200"></progress>
                 </div>
                 <div class="col-span-1 whitespace-nowrap">
