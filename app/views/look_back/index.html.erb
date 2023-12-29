@@ -2,6 +2,66 @@
 <div class="flex flex-wrap justify-center">
   <div class="card w-full max-w-4xl mx-4 mb-8 shadow-xl text-gray-600">
     <div class="card-body">
+      <div class="flex justify-center space-x-2 mt-6">
+        <%= image_tag "icon/small_flower_yellow", class:"h-10" %>
+        <h2 class="text-2xl text-center font-semibold mb-8">今月の振り返り</h2>
+        <%= image_tag "icon/small_flower_yellow", class:"h-10" %>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- カテゴリ内訳グラフ -->
+        <div class="row-span-2 mb-3 p-4 border border-gray-200 rounded-lg">
+          <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">カテゴリ内訳</h3>
+          <div class="items-center">
+            <%= pie_chart @chart, library: { title: { text: "今月の達成タスク数<br> #{@chart_count}件" } } %>
+          </div>
+        </div>
+
+        <!-- 今月の目標 -->
+        <div class="mb-3 p-4 border border-gray-200 rounded-lg text-center">
+          <h3 class="text-xl font-semibold mb-3 underline decoration-4 decoration-secondary">今月の目標</h3>
+          <p class="mb-3">今月の目標を設定しよう！</p>
+          <%= link_to "目標を設定する", new_goal_path, class: "btn btn-secondary rounded-lg" %>
+        </div>
+
+        <!-- 今月達成した目標 -->
+        <div class="mb-3 p-4 border border-gray-200 rounded-lg">
+          <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">今月達成した目標</h3>
+          <% if @achieved_goals.present? %>
+            <ul class="list-disc pl-5 overflow-y-auto max-h-56">
+              <% @achieved_goals.each do |goal| %>
+                <li><%= goal.content %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>今月達成した目標はありません。</p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mb-3 p-4 border border-gray-200 rounded-l">
+        <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">週間目標の進行状況</h3>
+        <div class="overflow-y-auto max-h-56 flex justify-center">
+          <div class="max-w-xl w-full">
+            <% @progress_goals.each do |goal| %>
+              <div class="grid grid-cols-5 items-center mb-2 gap-4">
+                <div class="col-span-3">
+                  <ul class="list-disc pl-5">
+                    <li><%= goal.content %></li>
+                  </ul>
+                </div>
+                <div class="col-span-1">
+                  <progress class="progress progress-primary w-full" value="<%= goal.progress %>" max="200"></progress>
+                </div>
+                <div class="col-span-1 whitespace-nowrap">
+                  <span><%= goal.progress %> %</span>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
       <!-- カレンダー -->
       <div class="p-4">
         <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">今月の成果スタンプ</h3>
@@ -13,11 +73,11 @@
                 <% events.each do |event| %>
                   <div class="calendar__event">
                     <% if event.is_a?(Goal) %>
-                      <div class="tooltip tooltip-left tooltip-base-100" data-tip="<%= Goal.human_attribute_name(:content)%>：<%= event.content %>">
+                      <div class="tooltip tooltip-left" data-tip="<%= Goal.human_attribute_name(:content)%>：<%= event.content %>">
                         <%= image_tag category_icon(event.category.name), size: "15x15" %>
                       </div>
                     <% elsif event.is_a?(Task) %>
-                      <div class="tooltip tooltip-left tooltip-base-100" data-tip="<%= t("look_back.index.task")%>：<%= event.content %>">
+                      <div class="tooltip tooltip-left" data-tip="<%= t("look_back.index.task")%>：<%= event.content %>">
                         <%= image_tag category_icon(event.goal.category.name), size: "15x15" %>
                       </div>
                     <% end %>

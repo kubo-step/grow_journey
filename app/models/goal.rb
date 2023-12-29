@@ -3,6 +3,8 @@ class Goal < ApplicationRecord
   belongs_to :category
   has_many :tasks, dependent: :destroy
 
+  scope :achieved_this_month, -> { where(checked: true, achieved_at: Date.current.beginning_of_month..Date.current.end_of_month) }
+
   validates :content, presence: true, length: { maximum: 255 }
   validates :category_id, presence: { message: 'を選択してください' }
 
