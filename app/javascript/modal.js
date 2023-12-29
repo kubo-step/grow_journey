@@ -49,12 +49,23 @@ function sendCheckboxState(toggleButton) {
   const taskId = toggleButton.id.split('-')[2]; // task.id の抽出
   const checked = toggleButton.checked;
 
+  // 現在の日付を取得し、時間と分を0に設定
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
+  // リクエストボディのデータ
+  const data = {
+    checked: checked,
+    achieved_at: now.toISOString() // ISO 8601 形式の日付文字列
+  };
+
   return fetch(`/tasks/${taskId}/toggle`, {
     method: 'PATCH',
     headers: {
-      'X-CSRF-Token': getCSRFToken() // CSRF トークンの取得
+      'X-CSRF-Token': getCSRFToken(), // CSRF トークンの取得
+      'Content-Type': 'application/json' // JSON形式のデータを送信するためのヘッダ
     },
-    body: JSON.stringify({ checked: checked })
+    body: JSON.stringify(data) // データのJSON化
   })
   .then((response) => {
     if (!response.ok) {
@@ -65,6 +76,7 @@ function sendCheckboxState(toggleButton) {
     console.error('エラーが発生しました:', error);
   });
 }
+
 
 function getCSRFToken() {
   const metaTag = document.querySelector('meta[name="csrf-token"]');

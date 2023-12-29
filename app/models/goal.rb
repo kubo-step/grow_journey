@@ -8,7 +8,11 @@ class Goal < ApplicationRecord
 
   # ゴールに紐づく全タスクが完了していればゴールを完了とし、一つでも未完了があれば未完了とする。
   def check_completion
-    update(checked: tasks.where.not(checked: true).empty?)
+    if tasks.where.not(checked: true).empty?
+      update(checked: true, achieved_at: Date.today)
+    else
+      update(checked: false)
+    end
   end
 
   def progress
@@ -22,5 +26,10 @@ class Goal < ApplicationRecord
   # ゴールに紐づく完了したタスクの数を返す
   def completed_tasks
     self.tasks.where(checked: true).count
+  end
+
+  # simple_calendar用のメソッド
+  def start_time
+    self.achieved_at
   end
 end

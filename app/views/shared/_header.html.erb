@@ -6,7 +6,7 @@
       </label>
       <ul tabindex="0" class="menu menu-sm text-gray-700 dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li><%= link_to "目標・タスク一覧", goals_path %></li>
-        <li><%= link_to "達成一覧", completed_goals_goals_path %></li>
+        <li><%= link_to "達成一覧", look_back_path %></li>
         <li><%= link_to "開花一覧", flowers_path %><li>
       </ul>
     </div>
@@ -15,7 +15,7 @@
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
         <li><%= link_to "目標・タスク一覧", goals_path, class:"font-bold"%></li>
-        <li><%= link_to "達成一覧", completed_goals_goals_path, class:"font-bold" %></li>
+        <li><%= link_to "達成一覧", look_back_path, class:"font-bold" %></li>
         <li><%= link_to "開花一覧", flowers_path, class:"font-bold" %><li>
     </ul>
   </div>

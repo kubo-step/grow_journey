@@ -181,3 +181,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%Y.%m.%d"
     pm: 午後
+  simple_calendar:
+    previous: "<<"
+    next: ">>"
+    week: 週

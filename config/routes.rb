@@ -12,12 +12,9 @@ Rails.application.routes.draw do
   get "privacy_policy", to: "top_pages#privacy_policy"
   get "terms", to: "top_pages#terms"
 
-  resources :goals do
+  resources :goals, only: %i[index new create edit destroy] do
     member do
       patch :toggle
-    end
-    collection do
-      get :completed_goals
     end
     resources :tasks, shallow: true
   end
@@ -34,6 +31,7 @@ Rails.application.routes.draw do
   resource :profiles, only: %i[show edit update]
 
   get "flowers", to: "flower#index"
+  get "look_back", to: "look_back#index"
 
   # 開発環境限定のルーティング
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

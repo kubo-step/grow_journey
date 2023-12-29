@@ -6,10 +6,15 @@ class Task < ApplicationRecord
 
   def toggle_checked!(current_user, selected_image)
     Task.transaction do
-      update!(checked: !checked)
+      update!(checked: !checked, achieved_at: Date.today)
       handle_flower_image(current_user, selected_image) if checked
       goal.check_completion
     end
+  end
+
+  # simple_calendar用のメソッド
+  def start_time
+    self.achieved_at
   end
 
   private
