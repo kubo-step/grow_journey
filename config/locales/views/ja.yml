@@ -74,4 +74,5 @@ ja:
         fail: 'ユーザー登録に失敗しました'
   look_back:
     index:
+      title: 今月の振り返り
       task: タスク

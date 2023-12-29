@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   belongs_to :goal
 
+  scope :achieved_this_month, -> { where(checked: true, achieved_at: Date.current.beginning_of_month..Date.current.end_of_month) }
+
   validates :content, presence: true, length: { maximum: 255 }
   validates :due, presence: true
 
