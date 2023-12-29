@@ -1,0 +1,33 @@
+<% content_for(:title, t(".title")) %>
+<div class="flex flex-wrap justify-center">
+  <div class="card w-full max-w-4xl mx-4 mb-8 shadow-xl text-gray-600">
+    <div class="card-body">
+      <!-- カレンダー -->
+      <div class="p-4">
+        <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">今月の成果スタンプ</h3>
+        <%= turbo_frame_tag 'calendar' do %>
+          <%= month_calendar events: @events do |date, events| %>
+            <div class="calendar-day mb-2">
+              <%= date.day %>
+              <div class="flex flex-wrap">
+                <% events.each do |event| %>
+                  <div class="calendar__event">
+                    <% if event.is_a?(Goal) %>
+                      <div class="tooltip tooltip-left tooltip-base-100" data-tip="<%= Goal.human_attribute_name(:content)%>：<%= event.content %>">
+                        <%= image_tag category_icon(event.category.name), size: "15x15" %>
+                      </div>
+                    <% elsif event.is_a?(Task) %>
+                      <div class="tooltip tooltip-left tooltip-base-100" data-tip="<%= t("look_back.index.task")%>：<%= event.content %>">
+                        <%= image_tag category_icon(event.goal.category.name), size: "15x15" %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

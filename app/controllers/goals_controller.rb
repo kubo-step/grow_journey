@@ -1,15 +1,14 @@
 class GoalsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_goal, only: %i[show edit update destroy toggle]
-  before_action :load_goals, only: %i[index completed_goals]
-  before_action :set_image, only: %i[index completed_goals]
+  before_action :find_goal, only: %i[edit update destroy toggle]
+  before_action :set_image, only: %i[index]
 
   def index
+    @goals = current_user.goals.includes(:category).order(created_at: :desc)
+    @tasks = current_user.tasks.includes(:goal).order(due: :asc)
+    @task = Task.new
     @goals_count = @tasks.where(checked: true).count
     @goals_count_modal = @goals_count + 1
   end
-
-  def show; end
 
   def new
     @goal = Goal.new
@@ -50,8 +49,6 @@ class GoalsController < ApplicationController
     render turbo_stream: turbo_stream.remove(@goal)
   end
 
-  def completed_goals; end
-
   private
 
   def goal_params
@@ -60,12 +57,6 @@ class GoalsController < ApplicationController
 
   def find_goal
     @goal = current_user.goals.find(params[:id])
-  end
-
-  def load_goals
-    @goals = current_user.goals.includes(:category).order(created_at: :desc)
-    @tasks = current_user.tasks.includes(:goal).order(due: :asc)
-    @task = Task.new
   end
 
   def set_image
