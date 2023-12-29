@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "privacy_policy", to: "top_pages#privacy_policy"
   get "terms", to: "top_pages#terms"
 
-  resources :goals, only: %i[index new create edit destroy] do
+  resources :goals, only: %i[index edit update destroy] do
     member do
       patch :toggle
     end
@@ -26,7 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :goal_steps, only: [:show, :update]
+  resources :month_goals, only: %i[new create edit update destroy]
+  resources :goal_steps, only: %i[show update]
   resources :categories, only: %i[new create]
   resource :profiles, only: %i[show edit update]
 
