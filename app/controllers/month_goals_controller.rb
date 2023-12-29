@@ -16,7 +16,6 @@ class MonthGoalsController < ApplicationController
 
     if @month_goal.save
       redirect_to goals_path, notice: t(".success")
-      flash.now[:success] = t(".success")
     else
       render :new, status: :unprocessable_entity
     end
