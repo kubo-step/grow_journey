@@ -1,7 +1,7 @@
 module ApplicationHelper
-  def page_title(page_title = '')
-    base_title = 'Grow Journey'
-		page_title.empty? ? base_title : "#{page_title} | #{base_title}"
+  def page_title(page_title = "")
+    base_title = "Grow Journey"
+    page_title.empty? ? base_title : "#{page_title} | #{base_title}"
   end
 
   def turbo_stream_flash
@@ -32,5 +32,35 @@ module ApplicationHelper
     else
       "icon/small_flower_brown.png"
     end
+  end
+
+  def default_meta_tags
+    {
+      site: "GrowJourney",
+      title: "GrowJourney",
+      reverse: true,
+      separator: "|",
+      description: "-自分の成長記録サービス-",
+      keywords: "GrowJourney,growjourney,grow,journey,成長,自己成長,記録,目標,目標設定",
+      canonical: request.original_url,
+      noindex: ! Rails.env.production?,
+      icon: {
+        href: image_url('icon.png'),
+      },
+      og: {
+        site_name: :site,
+        title: :title,
+        description: :disposition,
+        type: "website",
+        url: request.original_url,
+        image: image_url("ogp_image.png"),
+        locale: "ja_JP"
+      },
+      twitter: {
+        site: "@",
+        card: "summary_large_image",
+        image: image_url("ogp_image.png"),
+      }
+    }
   end
 end
