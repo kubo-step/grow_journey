@@ -72,6 +72,8 @@ gem "simple_calendar", "~> 2.4"
 
 # グラフ作成
 gem "chartkick"
+# OGP
+gem "meta-tags"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
