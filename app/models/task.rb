@@ -8,7 +8,7 @@ class Task < ApplicationRecord
 
   def toggle_checked!(current_user, selected_image)
     Task.transaction do
-      update!(checked: !checked, achieved_at: Date.today)
+      update_columns(checked: !checked, achieved_at: Date.today)
       handle_flower_image(current_user, selected_image) if checked
       goal.check_completion
     end

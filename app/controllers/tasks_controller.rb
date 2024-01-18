@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  before_action :set_image, only: %i[completed_tasks]
   before_action :find_goal, only: %i[new create]
   before_action :find_task, only: %i[edit update destroy toggle copy]
   before_action :tasks_all, only: %i[create update copy]
@@ -81,13 +80,5 @@ class TasksController < ApplicationController
 
   def tasks_all
     @tasks = current_user.tasks.includes(:goal).order(due: :asc)
-  end
-
-  def set_image
-    images = ["flower01_cherry_blossoms.gif", "flower02_marigold.gif", "flower03_himejoon.gif", "flower04_sunflower.gif",
-              "flower05_gerbera.gif"
-            ]
-    @image = images.sample
-    session[:selected_image] = @image
   end
 end
