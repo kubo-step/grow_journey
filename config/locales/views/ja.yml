@@ -6,9 +6,6 @@ ja:
     to_login_page: 'ログインページへ'
     cancel: キャンセル
     submit: 保存
-    link_goal: 目標・タスク一覧
-    link_look_back: 振り返り
-    link_flower: 開花一覧
     message:
       login: 'ログインしました'
       require_login: 'ログインしてください'
