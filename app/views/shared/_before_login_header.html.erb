@@ -2,7 +2,8 @@
   <div class="flex-1 px-2 lg:flex-none">
     <a class="text-lg font-bold"><%= link_to 'GrowJourney', root_path %></a>
   </div>
-  <div class="flex justify-end flex-1 px-2">
-    <%= link_to t('defaults.login'), new_user_session_path, class: 'btn btn-square btn-ghost whitespace-nowrap w-24' %>
+  <div class="flex justify-end flex-1 space-x-2">
+    <%= link_to t("defaults.link_cheer_goal"), cheers_path, class: "btn btn-ghost" %>
+    <%= link_to t('defaults.login'), new_user_session_path, class: 'btn btn-ghost' %>
   </div>
 </div>
