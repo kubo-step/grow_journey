@@ -10,7 +10,7 @@ class LookBackController < ApplicationController
 
     @progress_goals = current_user.goals.includes(:category).where(checked: false)
     @chart_count = @achieved_tasks.count
-    @chart_data = Task.joins(goal: :category)
+    @chart_data = current_user.tasks.joins(goal: :category)
                       .achieved_this_month
                       .group("categories.id", "categories.name")
                       .order("categories.id ASC")

@@ -58,12 +58,22 @@
         <% end %>
 
         <!-- カテゴリ内訳グラフ -->
-        <div class="row-span-2 mb-3 p-4 border border-gray-200 rounded-lg shadow md:order-1">
-          <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">カテゴリ内訳</h3>
-          <div class="items-center">
-            <%= pie_chart @chart, library: { title: { text: "今月の達成タスク数<br> #{@chart_count}件" } } %>
+        <% if @chart.present? %>
+          <div class="row-span-2 mb-3 p-4 border border-gray-200 rounded-lg shadow md:order-1">
+            <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">カテゴリ内訳</h3>
+            <div class="items-center">
+              <%= pie_chart @chart, library: { title: { text: "今月の達成タスク数<br> #{@chart_count}件" } } %>
+            </div>
           </div>
-        </div>
+        <% else %>
+          <div class="flex items-center justify-center row-span-2 mb-3 p-4 border border-gray-200 rounded-lg shadow md:order-1">
+            <div class="self-center space-y-3">
+              <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">カテゴリ内訳</h3>
+              <p class="text-center text-sm">タスクに取り組もう！</p>
+              <%= link_to "目標・タスク一覧に戻る", goals_path, class: 'btn btn-secondary' %>
+            </div>
+          </div>
+        <% end %>
       </div>
 
       <!-- X共有 -->
