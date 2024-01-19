@@ -3,6 +3,8 @@ class LookBackController < ApplicationController
     @achieved_goals = current_user.goals.includes(:category).achieved_this_month
     @achieved_tasks = current_user.tasks.includes(:goal).achieved_this_month
     @events = @achieved_goals + @achieved_tasks
+    @achieved_goal = @achieved_goals.first.content if @achieved_goals.present?
+    @achieved_goals_count = @achieved_goals.size
 
     @month_goal = current_user.goals.monthly.where(deadline: Date.current.beginning_of_month..Date.current.end_of_month).first
 
