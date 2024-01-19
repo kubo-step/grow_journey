@@ -9,72 +9,78 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- 今月の目標 -->
+      <% if @month_goal.present? %>
+        <div class="p-4 border border-gray-200 rounded-lg shadow text-center md:order-2">
+          <h3 class="text-xl font-semibold mb-5 underline decoration-4 decoration-secondary">今月の目標</h3>
+          <%= turbo_frame_tag "month_#{dom_id(@month_goal)}" do %>
+            <div class="mt-6 font-semibold md:text-lg">
+              <%= @month_goal.content %>
+            </div>
+            <div class="flex justify-end space-x-3">
+              <%= link_to edit_month_goal_path(@month_goal) do %>
+                <i class="fa-solid fa-pen mr-1"></i>
+              <% end %>
+              <%= button_to month_goal_path(@month_goal), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
+                <i class="fa-solid fa-trash mr-3"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <%else%>
+        <div class="flex items-center justify-center p-4 border border-gray-200 rounded-lg shadow text-center md:order-2">
+          <div class="self-center space-y-2">
+            <h3 class="text-xl font-semibold mb-5 underline decoration-4 decoration-secondary">今月の目標</h3>
+            <p class="text-sm items-center">今月の目標を設定しよう！</p>
+            <%= link_to "目標を設定する", new_month_goal_path, class: "btn btn-secondary rounded-lg shadow" %>
+          </div>
+        </div>
+      <%end%>
+
+        <!-- 今月達成した目標 -->
+        <% if @achieved_goals.present? %>
+          <div class="mb-3 p-4 border border-gray-200 rounded-lg shadow md:order-3">
+            <h3 class="text-xl font-semibold mb-5 text-center underline decoration-4 decoration-secondary">今月達成した週間目標</h3>
+              <ul class="list-disc px-5 overflow-y-auto max-h-56 text-sm">
+                <% @achieved_goals.each do |goal| %>
+                  <li><%= goal.content %></li>
+                <% end %>
+              </ul>
+          </div>
+        <% else %>
+          <div class="flex items-center justify-center mb-3 p-4 border border-gray-200 rounded-lg shadow md:order-3">
+            <div class="self-center">
+              <h3 class="text-xl font-semibold mb-5 text-center underline decoration-4 decoration-secondary">今月達成した週間目標</h3>
+              <p class="text-sm text-center">今月達成した目標はありません。</p>
+            </div>
+          </div>
+        <% end %>
+
         <!-- カテゴリ内訳グラフ -->
-        <div class="row-span-2 mb-3 p-4 border border-gray-200 rounded-lg shadow">
+        <div class="row-span-2 mb-3 p-4 border border-gray-200 rounded-lg shadow md:order-1">
           <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">カテゴリ内訳</h3>
           <div class="items-center">
             <%= pie_chart @chart, library: { title: { text: "今月の達成タスク数<br> #{@chart_count}件" } } %>
           </div>
         </div>
-
-        <!-- 今月の目標 -->
-        <div class="p-4 border border-gray-200 rounded-lg shadow text-center">
-          <h3 class="text-xl font-semibold mb-3 underline decoration-4 decoration-secondary">今月の目標</h3>
-          <% if @month_goal.present? %>
-            <%= turbo_frame_tag "month_#{dom_id(@month_goal)}" do %>
-              <div class="mt-6 font-semibold md:text-lg">
-                <%= @month_goal.content %>
-              </div>
-              <div class="flex justify-end space-x-3">
-                <%= link_to edit_month_goal_path(@month_goal) do %>
-                  <i class="fa-solid fa-pen mr-1"></i>
-                <% end %>
-                <%= button_to month_goal_path(@month_goal), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
-                  <i class="fa-solid fa-trash mr-3"></i>
-                <% end %>
-              </div>
-            <% end %>
-          <%else%>
-            <p class="mb-3">今月の目標を設定しよう！</p>
-            <%= link_to "目標を設定する", new_month_goal_path, class: "btn btn-secondary rounded-lg shadow" %>
-          <%end%>
-        </div>
-
-        <!-- 今月達成した目標 -->
-        <div class="mb-3 p-4 border border-gray-200 rounded-lg shadow">
-          <h3 class="text-xl font-semibold mb-5 text-center underline decoration-4 decoration-secondary">今月達成した目標</h3>
-          <% if @achieved_goals.present? %>
-            <ul class="list-disc px-5 overflow-y-auto max-h-56 text-sm">
-              <% @achieved_goals.each do |goal| %>
-                <li><%= goal.content %></li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p>今月達成した目標はありません。</p>
-          <% end %>
-        </div>
       </div>
+
       <!-- X共有 -->
-      <div class="mt-4 mb-4 text-center">
-        <h3 class="text-xl font-semibold mb-3">今月の挑戦、どうでしたか？</h3>
-        <p class="mb-4 text-sm">毎月の小さな一歩も、大きな成長への道。<br>あなたの今月の成果を友達と共有しましょう！</p>
-        <% if @month_goal.present? %>
-          <%= link_to "https://twitter.com/share?url=https://www.grow-journey.com&text=今月は#{@month_goal.content}ことに挑戦し、#{@achieved_goal}など週間目標を#{@achieved_goals_count}件達成しました！%0a達成したタスクは#{@chart_count}件でした✨%0a%20%23GrowJourney%20%23自己成長記録%0a",
-            target: '_blank',
-            data: { turbo: false },
-            class:"btn btn-outline font-bold shadow-md" do %>
-              <i class="fa-brands fa-x-twitter"></i>でシェア！
+      <% if @chart_count > 0 %>
+        <div class="mt-4 mb-4 text-center">
+          <h3 class="text-lg font-semibold mb-3">今月の挑戦、どうでしたか？</h3>
+          <p class="mb-4 text-sm">毎月の小さな一歩も、大きな成長への道。<br>あなたの今月の成果を友達と共有しましょう！</p>
+          <% if @month_goal.present? && @achieved_goal.present? && @chart_count.present? %>
+            <%= render 'shared_button', content: "今月は#{@month_goal}ことに挑戦し、#{@achieved_goal}などの週間目標を#{@achieved_goals_count}件達成しました！達成したタスクは#{@chart_count}件でした✨" %>
+          <% elsif @achieved_goal.present? && @chart_count.present? %>
+            <%= render 'shared_button', content: "今月は#{@achieved_goal}などの週間目標を#{@achieved_goals_count}件達成しました！達成したタスクは#{@chart_count}件でした✨" %>
+          <% elsif @chart_count.present? %>
+            <%= render 'shared_button', content: "今月はタスクを#{@chart_count}件達成しました✨" %>
           <% end %>
-        <% else %>
-          <%= link_to "https://twitter.com/share?url=https://www.grow-journey.com&text=今月は#{@achieved_goal}など週間目標を#{@achieved_goals_count}件達成しました！%0a達成したタスクは#{@chart_count}件でした✨%0a%20%23GrowJourney%20%23自己成長記録%0a",
-            target: '_blank',
-            data: { turbo: false },
-            class:"btn btn-outline font-bold shadow-md" do %>
-              <i class="fa-brands fa-x-twitter"></i>でシェア！
-          <% end %>
-        <% end %>
-      </div>
-
+        </div>
+        <div class="divider"></div>
+      <% end %>
       <!-- カレンダー -->
       <div class="p-4">
         <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">今月の成果スタンプ</h3>
