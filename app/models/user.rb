@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :tasks, through: :goals
   has_many :user_flower_images, dependent: :destroy
   has_many :flower_images, through: :user_flower_images, source: :flower_images
+  has_many :cheers, dependent: :destroy
+  has_many :cheer_goals, through: :cheers, source: :goal
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :provider, presence: true
