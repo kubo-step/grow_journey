@@ -42,9 +42,9 @@
 
         <!-- 今月達成した目標 -->
         <div class="mb-3 p-4 border border-gray-200 rounded-lg shadow">
-          <h3 class="text-xl font-semibold mb-3 text-center underline decoration-4 decoration-secondary">今月達成した目標</h3>
+          <h3 class="text-xl font-semibold mb-5 text-center underline decoration-4 decoration-secondary">今月達成した目標</h3>
           <% if @achieved_goals.present? %>
-            <ul class="list-disc pl-5 overflow-y-auto max-h-56">
+            <ul class="list-disc px-5 overflow-y-auto max-h-56 text-sm">
               <% @achieved_goals.each do |goal| %>
                 <li><%= goal.content %></li>
               <% end %>
@@ -54,28 +54,25 @@
           <% end %>
         </div>
       </div>
-
-      <div class="mb-3 p-4 border border-gray-200 rounded-lg shadow">
-        <h3 class="text-xl font-semibold mb-5 text-center underline decoration-4 decoration-secondary">週間目標の進行状況</h3>
-        <div class="overflow-y-auto max-h-56 flex justify-center">
-          <div>
-            <% @progress_goals.each do |goal| %>
-              <div class="grid grid-cols-12 items-center mb-2 gap-4">
-                <div class="col-span-6 md:col-span-8">
-                  <ul class="list-disc pl-5">
-                    <li><%= goal.content %></li>
-                  </ul>
-                </div>
-                <div class="col-span-3">
-                  <progress class="progress progress-primary w-full" value="<%= goal.progress %>" max="200"></progress>
-                </div>
-                <div class="col-span-1 whitespace-nowrap">
-                  <span><%= goal.progress %> %</span>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
+      <!-- X共有 -->
+      <div class="mt-4 mb-4 text-center">
+        <h3 class="text-xl font-semibold mb-3">今月の挑戦、どうでしたか？</h3>
+        <p class="mb-4 text-sm">毎月の小さな一歩も、大きな成長への道。<br>あなたの今月の成果を友達と共有しましょう！</p>
+        <% if @month_goal.present? %>
+          <%= link_to "https://twitter.com/share?url=https://www.grow-journey.com&text=今月は#{@month_goal.content}ことに挑戦し、#{@achieved_goal}など週間目標を#{@achieved_goals_count}件達成しました！%0a達成したタスクは#{@chart_count}件でした✨%0a%20%23GrowJourney%20%23自己成長記録%0a",
+            target: '_blank',
+            data: { turbo: false },
+            class:"btn btn-outline font-bold shadow-md" do %>
+              <i class="fa-brands fa-x-twitter"></i>でシェア！
+          <% end %>
+        <% else %>
+          <%= link_to "https://twitter.com/share?url=https://www.grow-journey.com&text=今月は#{@achieved_goal}など週間目標を#{@achieved_goals_count}件達成しました！%0a達成したタスクは#{@chart_count}件でした✨%0a%20%23GrowJourney%20%23自己成長記録%0a",
+            target: '_blank',
+            data: { turbo: false },
+            class:"btn btn-outline font-bold shadow-md" do %>
+              <i class="fa-brands fa-x-twitter"></i>でシェア！
+          <% end %>
+        <% end %>
       </div>
 
       <!-- カレンダー -->
