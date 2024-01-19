@@ -8,6 +8,7 @@ class GoalsController < ApplicationController
     @task = Task.new
     @goals_count = @tasks.where(checked: true).count
     @goals_count_modal = @goals_count + 1
+    @image_flower = FlowerImage.find_by(flower_url: @image)
   end
 
 
@@ -45,10 +46,8 @@ class GoalsController < ApplicationController
   end
 
   def set_image
-    images = ["flower01_cherry_blossoms.gif", "flower02_marigold.gif", "flower03_himejoon.gif", "flower04_sunflower.gif",
-              "flower05_gerbera.gif"
-            ]
-    @image = images.sample
+    @random_flower_image = FlowerImage.order("RANDOM()").first
+    @image = @random_flower_image.flower_url
     session[:selected_image] = @image
   end
 end
