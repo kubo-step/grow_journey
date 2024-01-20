@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   resources :goals, only: %i[index edit update destroy] do
     resources :tasks, shallow: true
+    collection do
+      get :cheers
+    end
   end
 
   resources :tasks, only: [] do
@@ -27,7 +30,7 @@ Rails.application.routes.draw do
   resources :goal_steps, only: %i[show update]
   resources :categories, only: %i[new create]
   resource :profiles, only: %i[show edit update]
-  resources :cheers, only: %i[index create destroy]
+  resources :cheers, only: %i[create destroy]
 
   get "flowers", to: "flower#index"
   get "look_back", to: "look_back#index"
