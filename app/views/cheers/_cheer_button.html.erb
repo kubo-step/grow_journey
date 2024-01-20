@@ -1,0 +1,5 @@
+<% if current_user.cheer?(cheer_goal)%>
+  <%= render "cheers/uncheer", cheer_goal: cheer_goal %>
+<% else %>
+  <%= render "cheers/cheer", cheer_goal: cheer_goal %>
+<% end %>

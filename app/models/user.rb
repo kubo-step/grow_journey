@@ -41,4 +41,20 @@ class User < ApplicationRecord
       user.name = "ゲスト"
     end
   end
+
+  def own?(object)
+    id == object.user_id
+  end
+
+  def cheer(cheer_goal)
+    cheer_goals << cheer_goal
+  end
+
+  def uncheer(cheer_goal)
+    cheer_goals.destroy(cheer_goal)
+  end
+
+  def cheer?(cheer_goal)
+    cheer_goals.include?(cheer_goal)
+  end
 end

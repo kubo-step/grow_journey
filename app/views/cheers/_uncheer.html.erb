@@ -1,0 +1,5 @@
+<%= button_to cheer_path(current_user.cheers.find_by(goal_id: cheer_goal.id)), method: :delete do %>
+  <div class="btn btn-outline btn-accent btn-circle p-3 mr-2">
+    <%= image_tag "icon/cheer.png" %>
+  </div>
+<% end %>
