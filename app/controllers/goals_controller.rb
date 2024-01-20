@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[cheer]
+  skip_before_action :authenticate_user!, only: %i[cheers]
   before_action :find_goal, only: %i[edit update destroy toggle]
   before_action :set_image, only: %i[index]
 

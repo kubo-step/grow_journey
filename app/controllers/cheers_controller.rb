@@ -1,6 +1,4 @@
 class CheersController < ApplicationController
-  skip_before_action :authenticate_user!
-
   def create
     cheer_goal = Goal.find(params[:goal_id])
     current_user.cheer(cheer_goal)
