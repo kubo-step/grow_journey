@@ -1,0 +1,40 @@
+<!-- cheer_goals パーシャル -->
+<div class="flex flex-col border rounded-lg p-5">
+  <div class="flex flex-col md:flex-row justify-between mb-2">
+    <!-- ユーザー情報（アバターと名前） -->
+    <div class="flex items-center mb-2 md:mb-0">
+      <%= image_tag cheer_goal.user.avatar.url, class: 'w-10 h-10 rounded-full object-cover object-center border border-gray-300 mr-3' %>
+      <div>
+        <p class="text-sm font-semibold text-gray-700">
+          <%= cheer_goal.user.name %>
+          <span class="text-xs font-normal text-gray-400 ml-2"><%= l cheer_goal.created_at, format: :short %></span>
+        </p>
+        <div class="text-sm mt-1">
+          今日から「<%= cheer_goal.content %>」始めました！<br>
+          １週間頑張ります！
+        </div>
+      </div>
+    </div>
+
+    <!-- 編集・削除ボタン -->
+    <div class="flex justify-end items-center">
+      <% if current_user.own?(cheer_goal)%>
+        <div class="text-accent space-x-2">
+          <div class="tooltip tooltip-left" data-tip="<%= t("defaults.edit") %>">
+            <%= link_to edit_goal_path(cheer_goal) do %>
+              <i class="fa-solid fa-pen"></i>
+            <% end %>
+          </div>
+          <div class="tooltip tooltip-left" data-tip="<%= t("defaults.delete") %>">
+            <%= button_to goal_path(cheer_goal), method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+        </div>
+      <% else%>
+      <!-- 応援ボタンと応援の数 -->
+        <%= render "cheers/cheer_button", cheer_goal: cheer_goal %>
+      <% end %>
+    </div>
+  </div>
+</div>

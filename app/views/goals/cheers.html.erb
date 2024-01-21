@@ -1,0 +1,16 @@
+<!-- index.html.erb -->
+<% content_for(:title, t('.title')) %>
+<div class="flex flex-wrap justify-center">
+  <div class="card w-full max-w-4xl mx-4 mb-8 shadow-2xl">
+    <div class="card-body">
+      <div class="font-bold text-center text-2xl mb-5">みんなの目標</div>
+      <% if @cheer_goals.present? %>
+        <% @cheer_goals.each do |cheer_goal| %>
+          <%= render partial: "cheers/cheer_goals", locals: { cheer_goal: cheer_goal } %>
+        <% end %>
+      <% else %>
+        <p class="text-center">目標はありません。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

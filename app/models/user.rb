@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :tasks, through: :goals
   has_many :user_flower_images, dependent: :destroy
   has_many :flower_images, through: :user_flower_images, source: :flower_images
+  has_many :cheers, dependent: :destroy
+  has_many :cheer_goals, through: :cheers, source: :goal
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :provider, presence: true
@@ -38,5 +40,21 @@ class User < ApplicationRecord
       user.password = guest_password
       user.name = "ゲスト"
     end
+  end
+
+  def own?(object)
+    id == object.user_id
+  end
+
+  def cheer(cheer_goal)
+    cheer_goals << cheer_goal
+  end
+
+  def uncheer(cheer_goal)
+    cheer_goals.destroy(cheer_goal)
+  end
+
+  def cheer?(cheer_goal)
+    cheer_goals.include?(cheer_goal)
   end
 end

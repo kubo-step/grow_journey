@@ -2,6 +2,7 @@ class Goal < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :tasks, dependent: :destroy
+  has_many :cheers, dependent: :destroy
 
   enum goal_type: { weekly: 0, monthly: 1 }
   scope :achieved_this_month, -> { where(checked: true, achieved_at: Date.current.beginning_of_month..Date.current.end_of_month) }

@@ -1,4 +1,5 @@
 class GoalsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[cheers]
   before_action :find_goal, only: %i[edit update destroy toggle]
   before_action :set_image, only: %i[index]
 
@@ -33,6 +34,10 @@ class GoalsController < ApplicationController
   def toggle
     @goal.toggle_checked!(current_user, session[:selected_image])
     render turbo_stream: turbo_stream.remove(@goal)
+  end
+
+  def cheers
+    @cheer_goals = Goal.includes(:category, :cheers).where(status: true).order(created_at: :desc)
   end
 
   private

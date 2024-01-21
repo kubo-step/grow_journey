@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_29_051850) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_19_075906) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_051850) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cheers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "goal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_cheers_on_goal_id"
+    t.index ["user_id", "goal_id"], name: "index_cheers_on_user_id_and_goal_id", unique: true
+    t.index ["user_id"], name: "index_cheers_on_user_id"
   end
 
   create_table "flower_images", force: :cascade do |t|
@@ -80,6 +90,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_29_051850) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "cheers", "goals"
+  add_foreign_key "cheers", "users"
   add_foreign_key "goals", "categories"
   add_foreign_key "goals", "users"
   add_foreign_key "tasks", "goals"
