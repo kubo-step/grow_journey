@@ -11,10 +11,8 @@ namespace :scheduler do
       today_beginning = Time.zone.today.beginning_of_day
       today_end = Time.zone.today.end_of_day
 
-      goals_and_tasks = user.goals.where(deadline: today_beginning..today_end, checked: false)
-
-      goals = goals_and_tasks.select(&:is_goal?).map(&:content)
-      tasks = goals_and_tasks.reject(&:is_goal?).map(&:content)
+      goals = user.goals.where(deadline: today_beginning..today_end, checked: false).map(&:content)
+      tasks = user.tasks.where(due: today_beginning..today_end, checked: false).map(&:content)
 
       message_text = ""
       if goals.any? || tasks.any?
