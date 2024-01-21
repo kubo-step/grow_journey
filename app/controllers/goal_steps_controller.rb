@@ -44,7 +44,7 @@ class GoalStepsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:content, :category_id)
+    params.require(:goal).permit(:content, :category_id, :status)
   end
 
   def task_params

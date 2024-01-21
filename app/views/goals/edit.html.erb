@@ -7,7 +7,7 @@
           <%= f.text_field :content, class: "w-full border border-gray-300 text-gray-600 rounded mt-2 p-3", placeholder: "タスク" %>
         </div>
 
-        <div class="flex flex-col md:flex-row md:space-x-4">
+        <div class="flex flex-col md:flex-row md:space-x-4 items-center">
           <div class="flex-1">
             <%= f.label :category_id, t(".category"), class: "text-sm font-medium text-gray-600 mb-1" %>
             <%= f.collection_select(:category_id, Category.all, :id, :name, { include_blank: "選択してください" }, class: "w-full border border-gray-300 text-gray-600 rounded mt-2 p-3") %>
@@ -18,9 +18,15 @@
           </div>
         </div>
 
-        <div class="flex justify-end mt-4">
-          <%= link_to t("defaults.cancel"), goals_path, class: "btn mr-2 sm:btn-xs md:btn" %>
-          <%= f.submit t("defaults.submit"), class: "btn btn-secondary sm:btn-xs md:btn-md" %>
+        <div class="flex justify-between items-center">
+          <div>
+            <%= f.label :status,"公開する", class: "text-sm text-gray-500" %>
+            <%= f.check_box :status %>
+          </div>
+          <div class="flex justify-end mt-4">
+            <%= link_to t("defaults.cancel"), goals_path, class: "btn mr-2 sm:btn-xs md:btn" %>
+            <%= f.submit t("defaults.submit"), class: "btn btn-secondary sm:btn-xs md:btn-md" %>
+          </div>
         </div>
       </div>
     <% end %>
