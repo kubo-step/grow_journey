@@ -37,7 +37,7 @@ class GoalsController < ApplicationController
   end
 
   def cheers
-    @cheer_goals = Goal.includes(:category).where(status: true).order(created_at: :desc)
+    @cheer_goals = Goal.includes(:category, :cheers).where(status: true).order(created_at: :desc)
   end
 
   private

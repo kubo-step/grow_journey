@@ -3,3 +3,7 @@
 <% else %>
   <%= render "cheers/cheer", cheer_goal: cheer_goal %>
 <% end %>
+  <div class="text-center text-xs text-gray-500">
+    応援<br>
+    <%= cheer_goal.cheers.count %>
+  </div>
