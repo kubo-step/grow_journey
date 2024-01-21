@@ -42,10 +42,6 @@ class User < ApplicationRecord
     end
   end
 
-  def own?(object)
-    id == object.user_id
-  end
-
   def cheer(cheer_goal)
     cheer_goals << cheer_goal
   end
