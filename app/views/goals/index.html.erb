@@ -1,58 +1,69 @@
-<% content_for(:title, t('.title')) %>
+<% content_for(:title, t(".title")) %>
 <%= render "modal" %>
 <div class="container mx-auto py-8 text-center">
-  <div class="mb-8">
-    <h2 class="text-ms font-bold mb-2 text-secondary">目標達成で花が咲きました！</h2>
-    <p class="text-xl border-secondary font-bold">あなたの花が咲いた数：<span class="text-5xl font-semibold"><%= @goals_count %></span>本</p>
-  </div>
-
-  <div class="container mx-auto text-center">
-    <%= link_to '新しい目標を追加', goal_step_path(:add_goal), class: 'btn btn-secondary text-md w-full max-w-lg' %>
+  <div class="mb-1">
+    <h2 class="text-xs md:text-md font-bold mb-2 text-secondary">目標達成で花が咲きました！</h2>
+    <p class="text-md md:text-xl border-secondary font-bold">あなたの花が咲いた数：<span class="text-2xl md:text-5xl font-semibold"><%= @goals_count %></span>本</p>
   </div>
 </div>
 <div class="flex flex-wrap justify-center">
   <div class="card w-full max-w-4xl mx-4 mb-8 shadow-2xl">
-    <div data-controller="tabs" data-tabs-active-tab-class="border tabs tabs-lifted">
+    <div data-controller="tabs" data-tabs-active-tab-class="border-b-2 border-gray-500 tabs tabs-lifted">
       <div class="flex justify-end">
         <ul class="list-reset flex border-b">
           <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="tab font-semibold">目標一覧</a>
+            <a class="tab text-xs md:text-md font-semibold"><%= t("goals.index.goals_all") %></a>
           </li>
           <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="tab font-semibold">本日のタスク</a>
+            <a class="tab text-xs md:text-md font-semibold"><%= t("goals.index.today_task") %></a>
           </li>
         </ul>
       </div>
-        <div class="hidden px-4 border-l border-b border-r" data-tabs-target="panel">
-              <div class="card-body">
-                <div class="font-bold text-center text-2xl">目標</div>
-                <% if @goals.present? %>
-                  <div id="goals">
-                    <%= turbo_frame_tag "goals" do %>
-                      <%= render @goals.select{ |g| !g.checked? } %>
-                    <% end %>
-                  </div>
-                <% end %>
-              </div>
+      <div class="hidden px-4 border-l border-b border-r" data-tabs-target="panel">
+        <div class="sm:w-full md:card-body">
+          <div class="flex flex-col items-center">
+            <div class="font-bold text-center text-xl mt-3 md:text-2xl"><%= t(Goal.human_attribute_name(:content))%></div>
+            <div class="self-end">
+              <%= link_to "＋目標の作成", goal_step_path(:add_goal), class: "btn btn-xs btn-secondary md:btn-sm" if @goals.present? %>
+            </div>
+          </div>
+          <% if @goals.present? %>
+            <div id="goals">
+              <%= turbo_frame_tag "goals" do %>
+                <%= render @goals.select{ |g| !g.checked? } %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="flex flex-col items-center justify-center my-10 md:mt-10 mb-20">
+              <p class="text-sm mb-2 md:text-md"><%= t("goals.index.goal_comment") %></p>
+              <%= link_to "新しい目標を追加", goal_step_path(:add_goal), class: "btn btn-secondary text-md w-full max-w-lg" %>
+            </div>
+          <% end %>
         </div>
+      </div>
 
-        <div class="hidden px-4 border-l border-b border-r" data-tabs-target="panel">
+      <div class="hidden px-4 border-l border-b border-r" data-tabs-target="panel">
+        <div class="sm:w-full py-5 md:card-body">
+          <div class="font-bold text-center text-xl my-3 md:text-2xl"><%= t("goals.index.today_task") %></div>
           <%= turbo_frame_tag "tab2_content" do %>
             <%= render "tasks/tab2" %>
           <% end %>
         </div>
       </div>
+    </div>
   </div>
 </div>
 
 <%# QRコードの追加 %>
-<div class="fixed bottom-4 right-4 p-2 bg-white rounded-lg shadow-lg">
-  <div class="flex flex-col items-center mb-2">
-    <div class="text-sm text-center text-gray-600">
-      <p>達成予定日を</p>
-      <p>LINEでお知らせ！</p>
+<div class="flex justify-end">
+  <div class="mr-4 xl:fixed bottom-4 right-4 p-2 bg-white rounded-lg shadow-lg">
+    <div class="flex flex-col items-center mb-2">
+      <div class="text-sm text-center text-gray-600">
+        <p>達成予定日を</p>
+        <p>LINEでお知らせ！</p>
+      </div>
+      <p class="text-xs text-gray-500">スキャンして友達追加</p>
+      <%= image_tag "provider/QRcode.png", alt: "LINE友達追加QRコード", size: "100x100" %>
     </div>
-    <p class="text-xs text-gray-500">スキャンして友達追加</p>
-    <%= image_tag "provider/QRcode.png", alt: "LINE友達追加QRコード", size: "100x100" %>
   </div>
 </div>
