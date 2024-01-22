@@ -35,7 +35,6 @@ namespace :scheduler do
           text: message_text
         }
         response = client.push_message(user.uid, message)
-        puts response
       end
     end
   end
