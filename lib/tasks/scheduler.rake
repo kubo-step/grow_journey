@@ -10,15 +10,22 @@ namespace :scheduler do
     User.find_each do |user|
       today_beginning = Time.zone.today.beginning_of_day
       today_end = Time.zone.today.end_of_day
+      week_beginning = Time.zone.today.beginning_of_week # この週の月曜日
+      week_end = Time.zone.today.end_of_week # この週の日曜日
 
-      goals = user.goals.where(deadline: today_beginning..today_end, checked: false).map(&:content)
+      goals = user.goals.where(deadline: week_beginning..week_end, checked: false).map(&:content)
       tasks = user.tasks.where(due: today_beginning..today_end, checked: false).map(&:content)
 
       message_text = ""
       if goals.any? || tasks.any?
-        message_text += "🌟 本日クリア予定の目標・タスクのお知らせ 🌟\n"
-        message_text += "目標:\n・#{goals.join("\n・")}\n" if goals.any?
-        message_text += "タスク:\n・#{tasks.join("\n・")}\n" if tasks.any?
+        if tasks.any?
+          message_text += "🌟本日のタスクのお知らせ🌟\n"
+          message_text += "・#{tasks.join("\n・")}\n"
+        end
+        if goals.any?
+          message_text += "🌟今週達成予定の目標🌟\n"
+          message_text += "・#{goals.join("\n・")}\n"
+        end
         message_text += "\n毎日の小さな一歩が、大きな成長へと繋がります。\n今日も一歩前進しましょう！🚶‍♀️"
       end
 
