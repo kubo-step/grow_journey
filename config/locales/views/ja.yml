@@ -30,6 +30,10 @@ ja:
     index:
       no_result: '0件'
       title: '一覧'
+      goals_all: 目標一覧
+      today_task: 本日のタスク
+      goal_comment: 今週の目標を立ててみよう！
+      task_comment: 本日のタスクが登録されていません
     create:
       success: '登録しました'
       fail: '登録に失敗しました'

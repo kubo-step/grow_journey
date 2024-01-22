@@ -12,7 +12,7 @@
                   <%= goal.category.name %>
                 </div>
               </div>
-              <p class="ml-4 sm:text-sm md:text-lg font-semibold sm:max-w-xs md:max-w-md"><%= goal.content %></p>
+              <p class="ml-4 text-sm md:text-lg font-semibold sm:max-w-xs md:max-w-md"><%= goal.content %></p>
             </div>
 
             <div class="flex justify-end">
@@ -32,7 +32,7 @@
                   </div>
                   <%= turbo_frame_tag "progress_#{goal.id}" do %>
                     <progress class="progress progress-primary sm:w-auto md:w-56" value="<%= goal.progress %>" max="100"></progress>
-                    <div class="flex flex-row">
+                    <div class="flex flex-row justify-between">
                       <p class="text-sm text-gray-500"><%= goal.progress %>%
                       <% if goal.progress > 0 %>
                         達成中！
