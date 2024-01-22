@@ -23,10 +23,13 @@ ja:
     terms: 利用規約
     privacy: プライバシーポリシー
   users:
-      registrations:
-        new:
-          title: '新規登録'
-          characters_minimum: 文字以上にして下さい
+    sessions:
+      new:
+        title: ログイン
+    registrations:
+      new:
+        title: '新規登録'
+        characters_minimum: 文字以上にして下さい
   goals:
     index:
       no_result: '0件'
@@ -35,6 +38,8 @@ ja:
       today_task: 本日のタスク
       goal_comment: 今週の目標を立ててみよう！
       task_comment: 本日のタスクが登録されていません
+    cheers:
+      title: みんなの目標
     create:
       success: '登録しました'
       fail: '登録に失敗しました'
@@ -76,17 +81,20 @@ ja:
       copy: コピー
       edit: 編集
       delete: 削除
+  look_back:
+    index:
+      title: 振り返り
+      task: タスク
   profiles:
     show:
       title: 'プロフィール'
     edit:
       title: 'プロフィール編集'
   devise:
+    passwords:
+      new:
+        title: パスワード再設定
     registrations:
       user:
         success: 'ユーザー登録が完了しました'
         fail: 'ユーザー登録に失敗しました'
-  look_back:
-    index:
-      title: 今月の振り返り
-      task: タスク
