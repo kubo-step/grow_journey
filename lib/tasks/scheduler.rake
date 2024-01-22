@@ -19,11 +19,11 @@ namespace :scheduler do
       message_text = ""
       if goals.any? || tasks.any?
         if tasks.any?
-          message_text += "🌟本日のタスクのお知らせ🌟\n"
-          message_text += "・#{tasks.join("\n・")}\n"
+          message_text += "🌟 本日のタスクのお知らせ 🌟\n"
+          message_text += "・#{tasks.join("\n・")}\n\n"
         end
         if goals.any?
-          message_text += "🌟今週達成予定の目標🌟\n"
+          message_text += "🌟 今週達成予定の目標 🌟\n"
           message_text += "・#{goals.join("\n・")}\n"
         end
         message_text += "\n毎日の小さな一歩が、大きな成長へと繋がります。\n今日も一歩前進しましょう！🚶‍♀️"
