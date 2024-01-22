@@ -1,19 +1,13 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to t("defaults.to_login_page"), new_session_path(resource_name), class: "mb-2" %><br />
+  <%= link_to t("defaults.to_login_page"), new_session_path(resource_name), class: "mb-2 text-sm border-b hover:text-primary" %><br />
+<% end %>
+
+<div class="flex items-center justify-between text-xs text-gray-500">
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to t("devise.shared.links.forgot_your_password"), new_password_path(resource_name), class: "mb-2 border-b hover:text-primary hover:border-primary"%>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to t("devise.shared.links.sign_up"), new_registration_path(resource_name), class: "mb-2" %><br />
+  <%= link_to t("devise.shared.links.sign_up"), new_registration_path(resource_name), class: "mb-2 border-b hover:text-primary hover:border-primary" %>
 <% end %>
-
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to t("devise.shared.links.forgot_your_password"), new_password_path(resource_name), class: "mb-2"%><br />
-<% end %>
-
-<%- unless controller_name == 'passwords' && action_name == 'new' %>
-  <%- if devise_mapping.omniauthable? %>
-    <%= button_to omniauth_authorize_path(resource_name, :line), class: "bg-line-green hover-line-dark-green text-white font-bold py-2 px-4 rounded", data: { turbo: false } do %>
-      <%= image_tag "provider/line_logo.png", alt: "LINE", class: "inline-block mr-2" %><%= t("devise.shared.links.sign_in_with_provider", provider: "LINE") %>
-    <% end %><br />
-  <% end %>
-<% end %>
+</div>

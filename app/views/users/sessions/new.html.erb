@@ -1,7 +1,13 @@
 <%= content_for :title, t('.title')%>
 <div class="card w-full max-w-lg bg-base-100 shadow-xl mx-auto">
   <div class="card-body">
-    <h1 class="card-title text-center my-8"><%= t('defaults.login') %></h1>
+    <h1 class="card-title font-bold self-center my-6"><%= t('defaults.login') %></h1>
+    <div class='text-center text-sm'>
+      <%= button_to omniauth_authorize_path(resource_name, :line), class: "btn btn-md bg-line-green text-sm text-white", data: { turbo: false } do %>
+        <%= image_tag "provider/line_logo.png", alt: "LINE", class: "inline-block mr-2", size:"25x25" %><%= t("devise.shared.links.sign_in_with_provider", provider: "LINE") %>
+      <% end %>
+    </div>
+    <div class="divider">OR</div>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-control">
         <%= f.label :email %>
@@ -22,7 +28,7 @@
         <% end %>
       <% end%>
 
-      <div class="actions mt-10">
+      <div class="actions mt-5">
         <%= f.submit t('defaults.login'),class: 'btn btn-secondary w-full mb-5' %>
       </div>
     <% end %>
