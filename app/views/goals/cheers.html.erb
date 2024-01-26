@@ -5,6 +5,9 @@
       <div class="font-bold text-center text-2xl mb-5">みんなの目標</div>
       <% if @cheer_goals.present? %>
         <% @cheer_goals.each do |cheer_goal| %>
+          <% if cheer_goal.checked? %>
+            <%= render partial: "cheers/cheer_achieved_goal", locals: { cheer_goal: cheer_goal } %>
+          <% end%>
           <%= render partial: "cheers/cheer_goals", locals: { cheer_goal: cheer_goal } %>
         <% end %>
       <% else %>
