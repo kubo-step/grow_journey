@@ -4,7 +4,13 @@
 
 #task_due::-webkit-calendar-picker-indicator {
   position: absolute;
-  width: 80%;
+  width: 100%;
+  opacity: 0;/* 不透明度を0に設定して非表示にする */
+}
+
+#task_due_edit::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 45%;
   opacity: 0;/* 不透明度を0に設定して非表示にする */
 }
 

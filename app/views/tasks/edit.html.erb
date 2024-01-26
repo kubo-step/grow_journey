@@ -11,7 +11,7 @@
           <!-- 期限 -->
           <div class="mb-2 md:mb-0 md:mr-2">
             <%= f.label :due, t(".due"), class: "block text-sm font-medium text-gray-700" %>
-            <%= f.date_field :due, id: "task_due", class: "form-input w-full border rounded-md" %>
+            <%= f.date_field :due, id: "task_due_edit", class: "form-input w-full border rounded-md" %>
           </div>
 
           <%= f.hidden_field :goal_id, value: @task.goal_id %>
