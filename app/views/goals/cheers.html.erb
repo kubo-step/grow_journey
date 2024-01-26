@@ -7,7 +7,7 @@
         <% @cheer_goals.each do |cheer_goal| %>
           <% if cheer_goal.checked? %>
             <%= render partial: "cheers/cheer_achieved_goal", locals: { cheer_goal: cheer_goal } %>
-          <% end%>
+          <% end %>
           <%= render partial: "cheers/cheer_goals", locals: { cheer_goal: cheer_goal } %>
         <% end %>
       <% else %>
