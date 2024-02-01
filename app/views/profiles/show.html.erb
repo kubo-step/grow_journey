@@ -1,11 +1,13 @@
 <% content_for(:title, t('.title')) %>
-<div class="container pt-3">
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <h1 class="float-left mb-5"><%= t('.title') %></h1>
-      <% if @user.provider != "guest_provider" %>
-        <%= link_to t('defaults.edit'), edit_profiles_path, class: 'btn btn-success float-right' %>
-      <% end %>
+<div class="flex flex-wrap justify-center mt-3">
+  <div class="card w-full max-w-4xl mx-4 mb-8 shadow-2xl">
+    <div class="card-body">
+      <h1 class="font-bold text-center text-2xl mb-5"><%= t('.title') %></h1>
+      <div class="flex justify-end">
+        <% if @user.provider != "guest_provider" %>
+          <%= link_to t('defaults.edit'), edit_profiles_path, class: 'btn btn-success' %>
+        <% end %>
+      </div>
       <table class="table">
         <tr>
           <th scope="row"><%= t(User.human_attribute_name(:name)) %></th>
